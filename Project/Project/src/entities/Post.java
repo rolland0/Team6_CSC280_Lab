@@ -13,6 +13,4 @@ public class Post implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-	
 }
