@@ -25,6 +25,12 @@
 		<button type="submit">Go</button>
 	</form>
 	<br />
-	
+<%-- 	<c:foreach> --%>
+<!-- 		iterate through the list of posts and display their titles and the number of replies -->
+<%-- 	</c:foreach> --%>
+	<c:if test="${not empty requestScope.userName }">
+		<a href="logout">Log out</a>
+		<a href="accountHandler">Manage account/a>
+	</c:if>
 </body>
 </html>
