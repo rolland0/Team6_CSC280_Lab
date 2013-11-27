@@ -32,7 +32,10 @@ public class Comment implements Serializable {
         @OneToMany(mappedBy = "comment")
         private ArrayList<Comment> replies;
         
+        @ManyToOne(optional=false)
+        private Post post;
 
+    
         public Comment(){
                 this.timeStamp = new Date();
         }
@@ -68,6 +71,14 @@ public class Comment implements Serializable {
         public void setReplies(ArrayList<Comment> replies) {
                 this.replies = replies;
         }
+
+		public Post getPost() {
+			return post;
+		}
+
+		public void setPost(Post post) {
+			this.post = post;
+		}
 
 
 }
