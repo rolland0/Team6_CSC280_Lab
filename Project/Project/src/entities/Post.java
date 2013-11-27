@@ -1,12 +1,18 @@
 package entities;
 
-<<<<<<< HEAD
-public class Post {
-=======
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
->>>>>>> d26690682d46f052a544c6aa203e904e6786b015
-
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	
+	
 }

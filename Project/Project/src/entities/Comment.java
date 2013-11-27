@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Comment implements Serializable {
@@ -26,10 +28,11 @@ public class Comment implements Serializable {
         @Column(nullable=false, length=250)
         private String content;
         
+        @Temporal(TemporalType.DATE)
         @Column(nullable=false)
         private Date timeStamp;
         
-        @OneToMany(mappedBy = "comment")
+        //@OneToMany(mappedBy = "comment")
         private ArrayList<Comment> replies;
         
         @ManyToOne(optional=false)
