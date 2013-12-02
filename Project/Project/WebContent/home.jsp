@@ -9,8 +9,8 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${not empty requestScope.userName }">
-			Welcome, ${requestScope.userName }
+		<c:when test="${not empty sessionScope.username }">
+			Welcome, ${sessionScope.username }
 		</c:when>
 		<c:otherwise>
 			Welcome, guest
@@ -20,15 +20,17 @@
 	</c:choose>
 	<br />
 	Search post titles:
-	<form method="get" action="Search">
+	<form method="post" action="Search">
 		<input type="text" name="searchQuery" placeholder="Enter your search term"></input>
 		<button type="submit">Go</button>
 	</form>
 	<br />
+	
 <%-- 	<c:foreach> --%>
 <!-- 		iterate through the list of posts and display their titles and the number of replies -->
 <%-- 	</c:foreach> --%>
-	<c:if test="${not empty requestScope.userName }">
+
+	<c:if test="${not empty sessionScope.username }">
 		<a href="logout">Log out</a>
 		<a href="accountHandler">Manage account</a>
 	</c:if>
