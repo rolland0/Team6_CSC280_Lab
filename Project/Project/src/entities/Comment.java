@@ -34,22 +34,20 @@ public class Comment implements Serializable {
         @Column(updatable=false, nullable=false)
         private Date timeStamp;
         
-        @OneToMany(mappedBy = "replyTo")
+        @OneToMany(mappedBy = "parentComment")
         private List<Comment> replies;
         
         @ManyToOne(optional=true)
         @JoinColumn(name="parentID")
-        private Comment replyTo;
+        private Comment parentComment;
         
         @ManyToOne(optional=true)
         private Post post;
 
-    
         public Comment(){
-                this.timeStamp = new Date();
+            this.timeStamp = new Date();
         }
 
-        
         public Date getTimeStamp(){
                 return timeStamp;
         }
