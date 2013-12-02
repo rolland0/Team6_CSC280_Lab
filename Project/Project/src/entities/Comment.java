@@ -37,9 +37,9 @@ public class Comment implements Serializable {
         //@OneToMany(mappedBy = "parentComment")
         //private List<Comment> replies;
         
-        @ManyToOne(optional=true)
-        @JoinColumn(name="parentID")
-        private Comment parentComment;
+       // @ManyToOne(optional=true)
+       // @JoinColumn(name="parentID")
+       // private Comment parentComment;
         
         @ManyToOne(optional=true)
         private Post post;
