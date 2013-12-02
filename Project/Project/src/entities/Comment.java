@@ -36,7 +36,7 @@ public class Comment implements Serializable {
         @OneToMany(mappedBy = "comment")
         private List<Comment> replies;
         
-        @ManyToOne(optional=false)
+        @ManyToOne(optional=true)
         private Post post;
 
     
