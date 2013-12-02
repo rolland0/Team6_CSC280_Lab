@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -30,11 +31,15 @@ public class Comment implements Serializable {
         private String content;
         
         @Temporal(TemporalType.DATE)
-        @Column(nullable=false)
+        @Column(updatable=false, nullable=false)
         private Date timeStamp;
         
-        @OneToMany(mappedBy = "comment")
+        @OneToMany(mappedBy = "replyTo")
         private List<Comment> replies;
+        
+        @ManyToOne(optional=true)
+        @JoinColumn(name="parentID")
+        private Comment replyTo;
         
         @ManyToOne(optional=true)
         private Post post;

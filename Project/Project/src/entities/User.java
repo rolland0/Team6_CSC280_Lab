@@ -29,10 +29,10 @@ public class User implements Serializable {
 			length = 255)
 	private String username;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "poster")
 	private List<Post> posts;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="originalPoster")
 	private List<Comment> comments;
 	
 	public User(){

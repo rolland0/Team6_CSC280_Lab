@@ -28,7 +28,7 @@ public class Post implements Serializable {
 	private String content;
 	
 	@Temporal(TemporalType.DATE)
-    @Column(nullable=false)
+	@Column(updatable=false, nullable=false)
 	private Date timeStamp;
 	
 	@ManyToOne(optional = false)

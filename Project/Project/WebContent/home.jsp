@@ -30,7 +30,7 @@
 <%-- 	</c:foreach> --%>
 	<c:if test="${not empty requestScope.userName }">
 		<a href="logout">Log out</a>
-		<a href="accountHandler">Manage account/a>
+		<a href="accountHandler">Manage account</a>
 	</c:if>
 </body>
 </html>
