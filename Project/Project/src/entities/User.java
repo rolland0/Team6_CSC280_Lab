@@ -32,7 +32,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "poster")
 	private List<Post> posts;
 	
-	@OneToMany(mappedBy="originalPoster")
+	@OneToMany(mappedBy="author")
 	private List<Comment> comments;
 	
 	public User(){
