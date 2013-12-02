@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import managers.PostManager;
+import managers.UserManager;
 import entities.Post;
 import entities.User;
 
@@ -21,6 +22,8 @@ public class AddPostServlet extends HttpServlet {
 	
 	@EJB
 	PostManager pm;
+	@EJB
+	UserManager um;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ServletContext sc = request.getServletContext();
@@ -36,9 +39,10 @@ public class AddPostServlet extends HttpServlet {
 		post.setContent(content);
 		post.setPoster(poster);
 		
+		poster.getPosts().add(post);
+		um.update(poster);
 		
 		pm.create(post);
-		//add to user's list of posts
 		
 	}
 
