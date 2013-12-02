@@ -34,8 +34,8 @@ public class Comment implements Serializable {
         @Column(updatable=false, nullable=false)
         private Date timeStamp;
         
-        @OneToMany(mappedBy = "parentComment")
-        private List<Comment> replies;
+        //@OneToMany(mappedBy = "parentComment")
+        //private List<Comment> replies;
         
         @ManyToOne(optional=true)
         @JoinColumn(name="parentID")
@@ -71,13 +71,14 @@ public class Comment implements Serializable {
                 this.content = content;
         }
 
-        public List<Comment> getReplies() {
+       /* public List<Comment> getReplies() {
                 return replies;
         }
 
         public void setReplies(List<Comment> replies) {
                 this.replies = replies;
         }
+        */
 
 		public Post getPost() {
 			return post;
