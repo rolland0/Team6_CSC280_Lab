@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Comment implements Serializable {
         @ManyToOne(optional = false)
         private User originalPoster;
         
-        @Column(nullable=false, length=250)
+        @Column(nullable=false, length=500)
         private String content;
         
         @Temporal(TemporalType.DATE)
@@ -33,7 +34,7 @@ public class Comment implements Serializable {
         private Date timeStamp;
         
         @OneToMany(mappedBy = "comment")
-        private ArrayList<Comment> replies;
+        private List<Comment> replies;
         
         @ManyToOne(optional=false)
         private Post post;
@@ -67,11 +68,11 @@ public class Comment implements Serializable {
                 this.content = content;
         }
 
-        public ArrayList<Comment> getReplies() {
+        public List<Comment> getReplies() {
                 return replies;
         }
 
-        public void setReplies(ArrayList<Comment> replies) {
+        public void setReplies(List<Comment> replies) {
                 this.replies = replies;
         }
 

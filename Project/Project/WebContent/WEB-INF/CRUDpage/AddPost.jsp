@@ -7,10 +7,10 @@
 <title>Submit A Post</title>
 </head>
 <body>
-	<form id="addPostForm" method="post" action="AddPostServlet">
-		Title: <input required type="text" name="title" maxlength="100">
+	<form id="addPostForm" method="post" action="CreatePost">
+		Title: <input required type="text" name="title" maxlength="250">
 		Content: 
-		<textarea required form="addPostForm" name ="content" placeholder="Enter a description of your problem/question here."></textarea>
+		<textarea maxlength="500" required form="addPostForm" name ="content" placeholder="Enter a description of your problem/question here."></textarea>
 		<input type="submit" value="Submit">
 	</form>
 </body>
