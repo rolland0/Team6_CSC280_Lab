@@ -24,7 +24,7 @@ public class Comment implements Serializable {
         private int id;
 
         @ManyToOne(optional = false)
-        private User author;
+        private User poster;
         
         @Column(nullable=false, length=500)
         private String content;
@@ -50,12 +50,12 @@ public class Comment implements Serializable {
         public Date getTimeStamp(){
                 return timeStamp;
         }
-        public void setAuthor(User u){
-                author = u;
+        public void setPoster(User u){
+                poster = u;
         }
 
-        public User getAuthor(){
-                return author;
+        public User getPoster(){
+                return poster;
         }
 
         public int getId(){

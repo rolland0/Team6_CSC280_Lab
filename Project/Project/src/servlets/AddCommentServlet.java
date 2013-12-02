@@ -45,7 +45,7 @@ public class AddCommentServlet extends HttpServlet {
 		Comment comment = new Comment();
 		
 		comment.setContent(content);
-		comment.setAuthor(user);
+		comment.setPoster(user);
 		comment.setPost(thePost);
 		
 		//comment.setReplies(replies); 
