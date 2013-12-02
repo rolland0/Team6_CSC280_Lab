@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import managers.PostManager;
 import managers.UserManager;
@@ -26,9 +27,9 @@ public class AddPostServlet extends HttpServlet {
 	UserManager um;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ServletContext sc = request.getServletContext();
+		HttpSession session = request.getSession();
 		
-		User poster = (User) sc.getAttribute("currentUser");
+		User poster = (User) session.getAttribute("currentUser");
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
