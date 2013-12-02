@@ -26,9 +26,19 @@
 	</form>
 	<br />
 	
-<%-- 	<c:foreach> --%>
-<!-- 		iterate through the list of posts and display their titles and the number of replies -->
-<%-- 	</c:foreach> --%>
+	<c:if test="$(not empty request.posts)">
+		<c:forEach var="nextPost" items="${posts }" >
+			<br />
+			<b>${nextPost.getTitle() }</b>
+			<br />
+			${nextPost.getContent() }
+			<br />
+			Posted by: ${nextPost.getPoster() }
+			<br />
+			Posted on: ${nextPost.getTimeStamp() }
+			<hr />
+		</c:forEach>
+	</c:if>
 
 	<c:if test="${not empty sessionScope.username }">
 		<a href="logout">Log out</a>
