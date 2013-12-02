@@ -1,9 +1,12 @@
 package managers;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import entities.Comment;
 
@@ -12,6 +15,11 @@ import entities.Comment;
 public class CommentManager {
 	@PersistenceContext
 	EntityManager em;
+	
+	public List<Comment> getComments(){
+		TypedQuery<Comment> getComments = em.createQuery("SELECT c FROM Comment c", Comment.class);
+		return getComments.getResultList();
+	}
 	
 	public Comment getComment(int commentID){
 		return em.find(Comment.class,commentID);
