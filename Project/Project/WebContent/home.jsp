@@ -27,17 +27,20 @@
 	<br />
 	
 	<c:if test="$(not empty request.posts)">
+		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<br />
 			<b>${nextPost.getTitle() }</b>
 			<br />
-			${nextPost.getContent() }
-			<br />
 			Posted by: ${nextPost.getPoster() }
 			<br />
 			Posted on: ${nextPost.getTimeStamp() }
+			<br />
+			<input type="hidden" value="${nextPost.id() }" name="id" ></input>
+			<button type="submit">Open this post</button>
 			<hr />
 		</c:forEach>
+		</form>
 	</c:if>
 
 	<c:if test="${not empty sessionScope.username }">
