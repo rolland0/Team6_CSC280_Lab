@@ -4,4 +4,42 @@
   <welcome-file-list>
     <welcome-file>Setup</welcome-file>
   </welcome-file-list>
+  
+    <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Login</web-resource-name>
+      <url-pattern>/WEB-INF/loginPages/login.jsp</url-pattern>
+      <url-pattern>/WEB-INF/CRUDpage/AddComment.jsp</url-pattern>
+      <url-pattern>/WEB-INF/CRUDpage/AddPost.jsp</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>AddElements</web-resource-name>
+      <url-pattern>/servlets/AddCommentServlet/*</url-pattern>
+      <url-pattern>/servlets/AddPostServlet/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+    	<role-name>Admin</role-name>
+    	<role-name>Member</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/loginError.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>401</error-code>
+    <location>/WEB-INF/loginError.jsp</location>
+  </error-page>
 </web-app>
