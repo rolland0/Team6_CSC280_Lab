@@ -18,15 +18,15 @@ public class User implements Serializable {
 	private int id;
 	
 	@Column(nullable = false,
-			length = 255)
+			length = 100)
 	private String email;
 	
 	@Column(nullable = false,
-			length = 255)
+			length = 50)
 	private String password;
 	
 	@Column(nullable = false,
-			length = 255)
+			length = 20)
 	private String username;
 	
 	@OneToMany(mappedBy = "poster")
