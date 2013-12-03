@@ -17,14 +17,15 @@
 	${post.getContent() }
 	<br />
 	
-	<hr />
 	<c:forEach var="comment" items="${post.getComments() }" >
-		<br />
-		Posted by: ${comment.getPoster() }
-		<br />
-		Posted on: ${comment.getTimeStamp() }
-		<br />
-		${comment.getContent() }
+		<div>
+			<br />
+			Posted by: ${comment.getPoster() }
+			<br />
+			Posted on: ${comment.getTimeStamp() }
+			<br />
+			${comment.getContent() }
+		</div>
 	</c:forEach>
 	
 	
