@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -24,22 +25,73 @@ public class AddUserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int MAX_USERNAME = 21;
+		int MAX_PASSWORD = 51;
+		
+		boolean validAccount = true, validUsername = true, validPassword = true;
+
+		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		if(username == null || email == null || password == null ||
-			username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST, "All fields are required");
+		
+		String invalidInfo = null;
+		
+		if(isInfoValidLength(username, 4, MAX_USERNAME)){
+			validUsername = !isUsernameTaken(username);
+			
+			if(!validUsername){
+				invalidInfo = "This username is already taken. Choose another one between 5 and 20 characters.";
+			}
+		}
+		else{
+			invalidInfo = "Please choose a username between 5 and 20 characters.";
 		}
 		
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setEmail(email);
 		
-		userManager.create(user);
+		
+		validPassword = isInfoValidLength(password, 4, MAX_PASSWORD);
+		
+		if(!validPassword){
+			invalidInfo = "Please enter a password between 5 and 50 characters.";
+		}
+		
+		
+		validAccount = validUsername && validPassword;
+		
+		if(validAccount){
+			User user = new User();
+			user.setUsername(username);
+			user.setPassword(password);
+			user.setEmail(email);
+
+			userManager.create(user);
+		}
+		else{
+			request.setAttribute("error", invalidInfo);
+		}
+		
+		request.getRequestDispatcher("Setup").forward(request, response);
 		response.sendRedirect("home.jsp");
 	}
+	
+	private boolean isUsernameTaken(String username) {
+		boolean nameTaken = false;
+		
+		List<User> allUsers = userManager.getUsers();	
+		for(User u : allUsers){
+			if(u.getUsername().equals(username)){
+				nameTaken = true;
+			}
+		}
+		return nameTaken;
+	}
+
+	public boolean isInfoValidLength(String info, int minLength, int maxLength){
+		return (info.length()>minLength && info.length()<maxLength);
+	}
+
 
 }
