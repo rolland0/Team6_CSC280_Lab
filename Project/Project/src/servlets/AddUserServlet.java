@@ -19,6 +19,10 @@ public class AddUserServlet extends HttpServlet {
 	
 	@EJB
 	UserManager userManager;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/CRUDpage/AddUser.jsp").forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -71,6 +75,7 @@ public class AddUserServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher("Setup").forward(request, response);
+		response.sendRedirect("home.jsp");
 	}
 	
 	private boolean isUsernameTaken(String username) {

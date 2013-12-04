@@ -52,5 +52,6 @@
 		<a href="logout">Log out</a>
 		<a href="accountHandler">Manage account</a>
 	</c:if>
+	<a href="AddUser">Add User</a>
 </body>
 </html>
