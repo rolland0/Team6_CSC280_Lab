@@ -26,11 +26,11 @@
 	</form>
 	<br />
 	
-	<form method="get" >
+	<form method="get" action="CreatePost" >
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>
 	
-	<c:if test="$(not empty request.posts)">
+	<c:if test="${not empty request.posts}">
 		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
