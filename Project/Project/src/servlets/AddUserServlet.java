@@ -67,6 +67,7 @@ public class AddUserServlet extends HttpServlet {
 		}
 		else{
 			request.setAttribute("error", invalidInfo);
+			request.getRequestDispatcher("AddUser.jsp").forward(request, response);
 		}
 		
 		request.getRequestDispatcher("Setup").forward(request, response);
