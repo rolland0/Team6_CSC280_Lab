@@ -25,24 +25,31 @@ public class AddUserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int MAX_USERNAME = 21;
-		int MAX_PASSWORD = 51;
-		
-		boolean validAccount = true, validUsername = true, validPassword = true;
 
+		boolean usernameIsValid = false;
+		boolean passwordIsValid = false;
 		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
+		if(username == null || username.isEmpty() ||
+		   password == null || password.isEmpty() ||
+		   email == null    || email.isEmpty()) {
+			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "All fields are required");
+		}
+		
 		
 		String invalidInfo = null;
+		System.out.println("User info check");
 		
-		if(isInfoValidLength(username, 4, MAX_USERNAME)){
-			validUsername = !isUsernameTaken(username);
+		if(isWithinLength(username, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
+			System.out.println("Username is valid length");
 			
-			if(!validUsername){
+			if(isUsernameFree(username)) {
+				usernameIsValid = true;
+			}
+			else {
 				invalidInfo = "This username is already taken. Choose another one between 5 and 20 characters.";
 			}
 		}
@@ -50,18 +57,15 @@ public class AddUserServlet extends HttpServlet {
 			invalidInfo = "Please choose a username between 5 and 20 characters.";
 		}
 		
-		
-		
-		validPassword = isInfoValidLength(password, 4, MAX_PASSWORD);
-		
-		if(!validPassword){
-			invalidInfo = "Please enter a password between 5 and 50 characters.";
+		if(isWithinLength(password, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
+			System.out.println("Password is valid length");
+			passwordIsValid = true;
+		}
+		else{
+			invalidInfo = "Please choose a password between 5 and 50 characters.";
 		}
 		
-		
-		validAccount = validUsername && validPassword;
-		
-		if(validAccount){
+		if(usernameIsValid && passwordIsValid){
 			User user = new User();
 			user.setUsername(username);
 			user.setPassword(password);
@@ -70,27 +74,27 @@ public class AddUserServlet extends HttpServlet {
 			userManager.create(user);
 		}
 		else{
-			request.setAttribute("error", invalidInfo);
+			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, invalidInfo);
+			return;
 		}
-		
-		request.getRequestDispatcher("Setup").forward(request, response);
-		response.sendRedirect("home.jsp");
+		response.sendRedirect("Setup");
 	}
 	
-	private boolean isUsernameTaken(String username) {
+	private boolean isUsernameFree(String username) {
 		boolean nameTaken = false;
 		
-		List<User> allUsers = userManager.getUsers();	
+		List<User> allUsers = userManager.getUsers();
 		for(User u : allUsers){
 			if(u.getUsername().equals(username)){
 				nameTaken = true;
 			}
 		}
-		return nameTaken;
+		return !nameTaken;
 	}
 
-	public boolean isInfoValidLength(String info, int minLength, int maxLength){
-		return (info.length()>minLength && info.length()<maxLength);
+	public boolean isWithinLength(String info, int minLength, int maxLength){
+		return (info.length() >= minLength && 
+				info.length() <= maxLength);
 	}
 
 

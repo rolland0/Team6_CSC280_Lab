@@ -13,6 +13,11 @@ import javax.persistence.OneToMany;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	public static final int USERNAME_MIN_LENGTH = 5;
+	public static final int USERNAME_MAX_LENGTH = 20;
+	public static final int PASSWORD_MIN_LENGTH = 5;
+	public static final int PASSWORD_MAX_LENGTH = 50;
+	
 	@Id
 	@GeneratedValue
 	private int id;
