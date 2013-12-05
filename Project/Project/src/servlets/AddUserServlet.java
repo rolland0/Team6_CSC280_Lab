@@ -46,7 +46,7 @@ public class AddUserServlet extends HttpServlet {
 			invalidInfo = "Please choose a username between 5 and 20 characters.";
 		}
 		
-		if(invalidInfo == null && !isWithinLength(password, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
+		if(invalidInfo == null && !isWithinLength(password, User.PASSWORD_MIN_LENGTH, User.PASSWORD_MAX_LENGTH)){
 			invalidInfo = "Please choose a password between 5 and 50 characters.";
 		}
 		
