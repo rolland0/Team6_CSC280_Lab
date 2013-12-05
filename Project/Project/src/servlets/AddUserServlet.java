@@ -57,6 +57,7 @@ public class AddUserServlet extends HttpServlet {
 			user.setEmail(email);
 
 			userManager.create(user);
+			request.getSession().setAttribute("currentUser", user);
 		}
 		else{
 			request.setAttribute("error", invalidInfo);

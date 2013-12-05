@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -42,5 +43,14 @@ public class UserManager{
 	public void delete(int id){
 		User user = getUser(id);
 		em.remove(user);
+	}
+	
+	public User getUserByName(String name){
+		TypedQuery<User> user = em.createNamedQuery("User.findName", User.class);
+		user.setParameter("name", name);
+		List<User> result = user.getResultList();
+		int size = result.size();
+		if (size > 1) throw new NonUniqueResultException();
+		return size == 1 ? result.get(0) : null;
 	}
 }
