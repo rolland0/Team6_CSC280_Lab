@@ -29,7 +29,7 @@ public class LoginFilter implements Filter {
 		if(username != null){
 			HttpSession session = request.getSession();
 			if(session.getAttribute("currentUser") == null){
-				session.setAttribute("currentUser", username);
+				session.setAttribute("currentUser", um.getUserByName(username));
 			}
 		}
 		chain.doFilter(request, resp);
