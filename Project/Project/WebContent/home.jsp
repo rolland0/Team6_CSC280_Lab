@@ -9,8 +9,8 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${not empty sessionScope.username }">
-			Welcome, ${sessionScope.username }
+		<c:when test="${not empty sessionScope.user.username }">
+			Welcome, ${sessionScope.user.usernname }
 		</c:when>
 		<c:otherwise>
 			Welcome, guest
@@ -35,13 +35,13 @@
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
 				<br />
-				<b>${nextPost.getTitle() }</b>
+				<b>${nextPost.title}</b>
 				<br />
-				Posted by: ${nextPost.getPoster() }
+				Posted by: ${nextPost.poster}
 				<br />
-				Posted on: ${nextPost.getTimeStamp() }
+				Posted on: ${nextPost.timeStamp}
 				<br />
-				<input type="hidden" value="${nextPost.id() }" name="id" ></input>
+				<input type="hidden" value="${nextPost.id}" name="id" ></input>
 				<button type="submit">Open this post</button>
 			</div>
 		</c:forEach>
