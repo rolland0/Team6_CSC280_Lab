@@ -31,7 +31,8 @@ public class User implements Serializable {
 	private String password;
 	
 	@Column(nullable = false,
-			length = 20)
+			length = 20,
+			unique = true)
 	private String username;
 	
 	@OneToMany(mappedBy = "poster")
