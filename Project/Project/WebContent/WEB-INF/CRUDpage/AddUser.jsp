@@ -8,6 +8,9 @@
 <title>Add User</title>
 </head>
 <body>
+	<c:if test="${not empty requestScope.error }">
+			${requestScope.error }
+	</c:if>
 	<h3>Please enter a username, password, and email.</h3>
 	<form method="post" action="AddUser">
 		Username: <input name="username" required type="text" maxlength="20">

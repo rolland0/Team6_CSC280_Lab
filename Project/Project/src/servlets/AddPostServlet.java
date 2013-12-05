@@ -25,6 +25,10 @@ public class AddPostServlet extends HttpServlet {
 	PostManager pm;
 	@EJB
 	UserManager um;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/CRUDpage/AddPost.jsp").forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();

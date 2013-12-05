@@ -33,6 +33,9 @@ public class Comment implements Serializable {
         @Column(updatable=false, nullable=false)
         private Date timeStamp;
         
+        @Column(updatable=true, nullable=false)
+        private int rating;
+        
         //@OneToMany(mappedBy = "parentComment")
         //private List<Comment> replies;
         
@@ -45,6 +48,7 @@ public class Comment implements Serializable {
 
         public Comment(){
             this.timeStamp = new Date();
+            this.rating = 0;
         }
 
         public Date getTimeStamp(){
@@ -87,5 +91,11 @@ public class Comment implements Serializable {
 			this.post = post;
 		}
 
-
+		public void incrementRating(){
+			rating ++;
+		}
+		
+		public void decrementRating(){
+			rating --;
+		}
 }

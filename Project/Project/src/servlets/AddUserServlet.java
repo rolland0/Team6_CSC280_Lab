@@ -25,9 +25,7 @@ public class AddUserServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		boolean usernameIsValid = false;
-		boolean passwordIsValid = false;
+		String invalidInfo = null;
 		
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
@@ -36,20 +34,11 @@ public class AddUserServlet extends HttpServlet {
 		if(username == null || username.isEmpty() ||
 		   password == null || password.isEmpty() ||
 		   email == null    || email.isEmpty()) {
-			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, "All fields are required");
+			invalidInfo = "All fields are required";
 		}
 		
-		
-		String invalidInfo = null;
-		System.out.println("User info check");
-		
 		if(isWithinLength(username, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
-			System.out.println("Username is valid length");
-			
-			if(isUsernameFree(username)) {
-				usernameIsValid = true;
-			}
-			else {
+			if(!isUsernameFree(username)) {
 				invalidInfo = "This username is already taken. Choose another one between 5 and 20 characters.";
 			}
 		}
@@ -57,15 +46,11 @@ public class AddUserServlet extends HttpServlet {
 			invalidInfo = "Please choose a username between 5 and 20 characters.";
 		}
 		
-		if(isWithinLength(password, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
-			System.out.println("Password is valid length");
-			passwordIsValid = true;
-		}
-		else{
+		if(invalidInfo == null && !isWithinLength(password, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
 			invalidInfo = "Please choose a password between 5 and 50 characters.";
 		}
 		
-		if(usernameIsValid && passwordIsValid){
+		if(invalidInfo == null){
 			User user = new User();
 			user.setUsername(username);
 			user.setPassword(password);
@@ -74,8 +59,8 @@ public class AddUserServlet extends HttpServlet {
 			userManager.create(user);
 		}
 		else{
-			response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE, invalidInfo);
-			return;
+			request.setAttribute("error", invalidInfo);
+			request.getRequestDispatcher("WEB-INF/CRUDpage/AddUser.jsp").forward(request, response);
 		}
 		response.sendRedirect("Setup");
 	}
