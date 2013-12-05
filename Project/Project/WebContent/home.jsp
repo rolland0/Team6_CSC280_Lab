@@ -15,7 +15,7 @@
 		<c:otherwise>
 			Welcome, guest
 			<br />
-			<a href="login">Click here to login</a>
+			<a href="LoginForward">Click here to login</a>
 		</c:otherwise>
 	</c:choose>
 	<br />
