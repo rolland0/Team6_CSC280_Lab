@@ -3,3 +3,11 @@ body{
 	background: #5e5e5b;
 	font-family: Verdana, Geneva, sans-serif;
 }
+
+.vote{
+	float: left;
+	width: 100px;
+	margin: 10px;
+	padding-left: auto;
+	padding-right: auto;
+}
