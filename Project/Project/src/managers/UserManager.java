@@ -83,4 +83,10 @@ public class UserManager{
 				|| !isWithinLength(email, User.EMAIL_MIN_LENGTH, User.EMAIL_MAX_LENGTH));
 	}
 	
+	public boolean isUsernameValid(String username) {
+		return !(username == null
+				|| username.isEmpty()
+				|| !isWithinLength(username, User.USERNAME_MIN_LENGTH, User.EMAIL_MAX_LENGTH));
+	}
+	
 }
