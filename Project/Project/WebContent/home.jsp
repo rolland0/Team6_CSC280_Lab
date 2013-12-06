@@ -50,7 +50,7 @@
 
 	<c:if test="${not empty sessionScope.username }">
 		<a href="logout">Log out</a>
-		<a href="accountHandler">Manage account</a>
+		<a href="UserProfile">Manage profile</a>
 	</c:if>
 	<a href="AddUser">Add User</a>
 </body>

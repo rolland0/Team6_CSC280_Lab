@@ -31,23 +31,30 @@ public class AddUserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		if(username == null || username.isEmpty() ||
-		   password == null || password.isEmpty() ||
-		   email == null    || email.isEmpty()) {
-			invalidInfo = "All fields are required";
-		}
-		
-		if(isWithinLength(username, User.USERNAME_MIN_LENGTH, User.USERNAME_MAX_LENGTH)){
-			if(!isUsernameFree(username)) {
-				invalidInfo = "This username is already taken. Choose another one between 5 and 20 characters.";
+		if(userManager.isUsernameFree(username)) {
+			if(!userManager.isUsernameFree(username)) {
+				invalidInfo = "This username is already taken. Choose another one between " +
+						User.USERNAME_MIN_LENGTH + " and " +
+						User.USERNAME_MAX_LENGTH + " characters.";
 			}
 		}
 		else{
-			invalidInfo = "Please choose a username between 5 and 20 characters.";
+			invalidInfo = "Please choose a username between " + 
+					User.USERNAME_MIN_LENGTH + " and " + 
+					User.USERNAME_MAX_LENGTH + " characters.";
 		}
 		
-		if(invalidInfo == null && !isWithinLength(password, User.PASSWORD_MIN_LENGTH, User.PASSWORD_MAX_LENGTH)){
-			invalidInfo = "Please choose a password between 5 and 50 characters.";
+		if(invalidInfo == null && userManager.isPasswordValid(password)) {
+			invalidInfo = "Please choose a password between " + 
+					User.PASSWORD_MIN_LENGTH + " and " + 
+					User.PASSWORD_MAX_LENGTH + " characters.";
+		}
+		
+		if(invalidInfo == null && userManager.isEmailValid(email)) {
+			
+			invalidInfo = "Please choose an email between " + 
+					User.EMAIL_MIN_LENGTH + " and " + 
+					User.EMAIL_MAX_LENGTH + " characters.";
 		}
 		
 		if(invalidInfo == null){
@@ -64,23 +71,6 @@ public class AddUserServlet extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/CRUDpage/AddUser.jsp").forward(request, response);
 		}
 		response.sendRedirect("Setup");
-	}
-	
-	private boolean isUsernameFree(String username) {
-		boolean nameTaken = false;
-		
-		List<User> allUsers = userManager.getUsers();
-		for(User u : allUsers){
-			if(u.getUsername().equals(username)){
-				nameTaken = true;
-			}
-		}
-		return !nameTaken;
-	}
-
-	public boolean isWithinLength(String info, int minLength, int maxLength){
-		return (info.length() >= minLength && 
-				info.length() <= maxLength);
 	}
 
 

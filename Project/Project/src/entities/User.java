@@ -24,21 +24,23 @@ public class User implements Serializable {
 	public static final int USERNAME_MAX_LENGTH = 20;
 	public static final int PASSWORD_MIN_LENGTH = 5;
 	public static final int PASSWORD_MAX_LENGTH = 50;
+	public static final int EMAIL_MIN_LENGTH = 5;
+	public static final int EMAIL_MAX_LENGTH = 100;
 
 	@Id
 	@GeneratedValue
 	private int id;
 
 	@Column(nullable = false,
-			length = 100)
+			length = EMAIL_MAX_LENGTH)
 	private String email;
 
 	@Column(nullable = false,
-			length = 50)
+			length = PASSWORD_MAX_LENGTH)
 	private String password;
 
 	@Column(nullable = false,
-			length = 20,
+			length = USERNAME_MAX_LENGTH,
 			unique = true)
 	private String username;
 
