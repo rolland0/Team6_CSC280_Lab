@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class User implements Serializable {
@@ -53,14 +55,14 @@ public class User implements Serializable {
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	@Column(name = "groups",
-	nullable = false,
-	length = 50)
-	@CollectionTable( name = "users_groups",
-	joinColumns = @JoinColumn(	nullable = false,
-	name = "user_id",
-	referencedColumnName = "user_id"),
-	foreignKey = @ForeignKey(	name = "FK_user_id",
-	foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users (user_id)"))
+			nullable = false,
+			length = 50)
+	@CollectionTable(name = "users_groups",
+					joinColumns = @JoinColumn(nullable = false,
+											  name = "user_id",
+											  referencedColumnName = "user_id"),
+					foreignKey = @ForeignKey(name = "FK_user_id",
+											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users (user_id)"))
 	private Set<UserGroups> groups;
 
 	public User(){
@@ -105,6 +107,15 @@ public class User implements Serializable {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public Set<UserGroups> getGroups() {
+		if (groups == null) groups = EnumSet.noneOf(UserGroups.class);
+		return this.groups;
+	}
+
+	public void setGroups(Set<UserGroups> groups) {
+		this.groups = groups;
 	}
 
 

@@ -34,10 +34,6 @@ public class LoginFilter implements Filter {
 		}
 		chain.doFilter(request, resp);
 	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
