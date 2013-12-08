@@ -11,12 +11,12 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty sessionScope.user.username }">
-			Welcome, ${sessionScope.user.usernname }
+			<h1>Welcome, <c:out escapeXml="true" value="${sessionScope.user.usernname }"></c:out>!</h1>
 		</c:when>
 		<c:otherwise>
-			Welcome, guest
-			<br />
-			<a href="LoginForward">Click here to login</a>
+			<h1>Welcome, guest!</h1>
+			<br>
+			<h2><a href="LoginForward">Login</a> | <a href="AddUser">Create An Account</a></h2>
 		</c:otherwise>
 	</c:choose>
 	<br />
@@ -50,9 +50,8 @@
 	</c:if>
 
 	<c:if test="${not empty sessionScope.username }">
-		<a href="logout">Log out</a>
-		<a href="UserProfile">Manage profile</a>
+		<a href="logout">Log out</a> | <a href="UserProfile">Manage profile</a>
 	</c:if>
-	<a href="AddUser">Add User</a>
+	
 </body>
 </html>

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import managers.UserManager;
 import entities.User;
+import entities.UserGroups;
 
 @WebServlet("/AddUser")
 public class AddUserServlet extends HttpServlet {
@@ -62,16 +62,18 @@ public class AddUserServlet extends HttpServlet {
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setEmail(email);
-
+			user.getGroups().add(UserGroups.members);
+			
 			userManager.create(user);
 			request.getSession().setAttribute("currentUser", user);
+			response.sendRedirect("Setup");
 		}
 		else{
 			request.setAttribute("error", invalidInfo);
 			request.getRequestDispatcher("WEB-INF/CRUDpage/AddUser.jsp").forward(request, response);
 			return;
 		}
-		response.sendRedirect("Setup");
+		
 	}
 
 
