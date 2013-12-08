@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import us.walkenhorst.crypto.PBEDigest;
+import us.walkenhorst.crypto.PasswordDigest;
 
 @Entity
 public class User implements Serializable {
@@ -43,6 +47,10 @@ public class User implements Serializable {
 			length = USERNAME_MAX_LENGTH,
 			unique = true)
 	private String username;
+	
+	@Column(nullable = false,
+			length = 255)
+	private String salt;
 
 	@OneToMany(mappedBy = "poster")
 	private List<Post> posts;
@@ -81,6 +89,21 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void setNewPassword(String clearPassword) throws NoSuchAlgorithmException{
+		PasswordDigest digest;
+		digest = new PBEDigest(clearPassword.toCharArray(), 1000);
+		this.setPassword(digest.getSaltedDigest());
+		this.setSalt(digest.getSalt());
+	}
+	
+	public String getSalt() {
+		return salt;
+	}
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public String getEmail() {

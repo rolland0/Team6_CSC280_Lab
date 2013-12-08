@@ -6,6 +6,7 @@
 		<class>entities.Comment</class>
 		<class>entities.Post</class>
 		<class>entities.User</class>
+		<class>entities.UserGroups</class>
 		
 		<!-- The following setting should only be used for
 			development and debugging, never for production databases! -->

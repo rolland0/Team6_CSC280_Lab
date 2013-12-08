@@ -1,7 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -60,7 +60,11 @@ public class AddUserServlet extends HttpServlet {
 		if(invalidInfo == null){
 			User user = new User();
 			user.setUsername(username);
-			user.setPassword(password);
+			try{
+				user.setNewPassword(password);
+			} catch (NoSuchAlgorithmException e){
+				throw new ServletException(e);
+			}
 			user.setEmail(email);
 
 			userManager.create(user);
