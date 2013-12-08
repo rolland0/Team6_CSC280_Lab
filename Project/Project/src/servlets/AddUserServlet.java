@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -60,12 +61,23 @@ public class AddUserServlet extends HttpServlet {
 		if(invalidInfo == null){
 			User user = new User();
 			user.setUsername(username);
-			user.setPassword(password);
+			try{
+				user.setNewPassword(password);
+			} catch (NoSuchAlgorithmException e){
+				throw new ServletException(e);
+			}
 			user.setEmail(email);
 			user.getGroups().add(UserGroups.members);
 			
 			userManager.create(user);
-			request.getSession().setAttribute("accountCreated", user);
+			
+			//if someone is logged in log them out
+			if (request.getRemoteUser() != null){
+				request.logout();
+			}
+			//login the new user
+			request.login(username, password);
+			
 			response.sendRedirect("Setup");
 		}
 		else{

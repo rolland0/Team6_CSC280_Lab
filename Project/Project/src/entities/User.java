@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+
+import us.walkenhorst.crypto.PBEDigest;
+import us.walkenhorst.crypto.PasswordDigest;
 
 
 @Entity
@@ -82,6 +86,10 @@ public class User implements Serializable {
 											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
 	private Set<UserGroups> groups;
 
+	@Column(nullable = false,
+			length = 255)
+	private String salt;
+
 	public User(){
 
 	}
@@ -100,6 +108,17 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void setNewPassword(String clearPassword) throws NoSuchAlgorithmException{
+		PasswordDigest digest;
+		digest = new PBEDigest(clearPassword.toCharArray(), 1000);
+		this.setPassword(digest.getSaltedDigest());
+		this.setSalt(digest.getSalt());
+	}
+	private void setSalt(String salt) {
+		this.salt = salt;
+		
 	}
 
 	public String getEmail() {
@@ -141,6 +160,10 @@ public class User implements Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getSalt() {
+		return salt;
 	}
 
 
