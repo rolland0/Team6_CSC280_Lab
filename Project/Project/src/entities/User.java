@@ -13,9 +13,11 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 
 @Entity
@@ -28,10 +30,14 @@ public class User implements Serializable {
 	public static final int PASSWORD_MAX_LENGTH = 50;
 	public static final int EMAIL_MIN_LENGTH = 5;
 	public static final int EMAIL_MAX_LENGTH = 100;
-
+	private static final String GENERATOR = "USERS_GEN";
+	
 	@Id
-	@GeneratedValue
-	private int id;
+	@Column(name = "user_id",
+			updatable = false,
+			unique = true,
+			nullable = false)
+	private int userId;
 
 	@Column(nullable = false,
 			length = EMAIL_MAX_LENGTH)
@@ -62,7 +68,7 @@ public class User implements Serializable {
 											  name = "user_id",
 											  referencedColumnName = "user_id"),
 					foreignKey = @ForeignKey(name = "FK_user_id",
-											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users (user_id)"))
+											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
 	private Set<UserGroups> groups;
 
 	public User(){
@@ -116,6 +122,14 @@ public class User implements Serializable {
 
 	public void setGroups(Set<UserGroups> groups) {
 		this.groups = groups;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 
