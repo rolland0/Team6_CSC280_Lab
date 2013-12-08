@@ -45,9 +45,9 @@ public class UserManager{
 		em.remove(user);
 	}
 	
-	public User getUserByName(String name){
+	public User getUserByName(String username){
 		TypedQuery<User> user = em.createNamedQuery("User.findName", User.class);
-		user.setParameter("name", name);
+		user.setParameter("username", username);
 		List<User> result = user.getResultList();
 		int size = result.size();
 		if (size > 1) throw new NonUniqueResultException();

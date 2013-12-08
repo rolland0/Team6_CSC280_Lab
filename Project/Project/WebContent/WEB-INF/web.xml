@@ -4,7 +4,6 @@
   <welcome-file-list>
     <welcome-file>Setup</welcome-file>
   </welcome-file-list>
-  
   <security-constraint>
     <display-name>Login Pages</display-name>
     <web-resource-collection>
@@ -17,20 +16,17 @@
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
-  
-   <login-config>
-   	 <auth-method>FORM</auth-method>
-     <form-login-config>
-      	<form-login-page>/WEB-INF/loginPages/login.jsp</form-login-page>
-   	 	<form-error-page>/WEB-INF/loginPages/loginError.jsp</form-error-page>
-   	 </form-login-config>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/WEB-INF/loginPages/login.jsp</form-login-page>
+      <form-error-page>/WEB-INF/loginPages/loginError.jsp</form-error-page>
+    </form-login-config>
   </login-config>
-  
   <error-page>
     <error-code>403</error-code>
     <location>/WEB-INF/loginError.jsp</location>
   </error-page>
-  
   <error-page>
     <error-code>401</error-code>
     <location>/WEB-INF/loginError.jsp</location>

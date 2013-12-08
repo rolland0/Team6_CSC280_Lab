@@ -65,7 +65,7 @@ public class AddUserServlet extends HttpServlet {
 			user.getGroups().add(UserGroups.members);
 			
 			userManager.create(user);
-			request.getSession().setAttribute("currentUser", user);
+			request.getSession().setAttribute("accountCreated", user);
 			response.sendRedirect("Setup");
 		}
 		else{

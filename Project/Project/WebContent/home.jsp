@@ -10,8 +10,8 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${not empty sessionScope.user.username }">
-			<h1>Welcome, <c:out escapeXml="true" value="${sessionScope.user.usernname }"></c:out>!</h1>
+		<c:when test="${not empty sessionScope.currentUser.username }">
+			<h1>Welcome, <c:out escapeXml="true" value="${sessionScope.currentUser.username }"></c:out>!</h1>
 		</c:when>
 		<c:otherwise>
 			<h1>Welcome, guest!</h1>
@@ -49,8 +49,8 @@
 		</form>
 	</c:if>
 
-	<c:if test="${not empty sessionScope.username }">
-		<a href="logout">Log out</a> | <a href="UserProfile">Manage profile</a>
+	<c:if test="${not empty sessionScope.currentUser.username }">
+		<a href="Logout">Logout</a> | <a href="UserProfile">Manage profile</a>
 	</c:if>
 	
 </body>

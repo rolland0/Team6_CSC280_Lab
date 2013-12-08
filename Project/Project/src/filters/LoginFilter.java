@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import managers.UserManager;
+import entities.User;
+
 
 @WebFilter("/*")
 public class LoginFilter implements Filter {
@@ -24,13 +26,26 @@ public class LoginFilter implements Filter {
 	public void destroy() {}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+		
 		HttpServletRequest request = (HttpServletRequest)req;
-		String username = request.getRemoteUser();
+		boolean accountCreated = request.getSession().getAttribute("accountCreated") != null;
+		String username = null;
+		
+		if(accountCreated){
+			User u = (User)request.getSession().getAttribute("accountCreated");
+			username = u.getUsername();
+		}
+		else{
+			username = request.getRemoteUser();
+		}
+		
 		if(username != null){
 			HttpSession session = request.getSession();
 			if(session.getAttribute("currentUser") == null){
 				session.setAttribute("currentUser", um.getUserByName(username));
 			}
+			else
+				System.out.println("no user");
 		}
 		chain.doFilter(request, resp);
 	}

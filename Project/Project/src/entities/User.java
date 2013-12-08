@@ -16,11 +16,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 
 
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(name = "User.findName",
+				query = "SELECT u FROM User u where u.username=:username")})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +39,11 @@ public class User implements Serializable {
 	private static final String GENERATOR = "USERS_GEN";
 	
 	@Id
+	@TableGenerator(name = GENERATOR,
+					allocationSize = 10,
+					initialValue = 10)
+	@GeneratedValue(strategy = GenerationType.TABLE,
+					generator = GENERATOR)
 	@Column(name = "user_id",
 			updatable = false,
 			unique = true,
