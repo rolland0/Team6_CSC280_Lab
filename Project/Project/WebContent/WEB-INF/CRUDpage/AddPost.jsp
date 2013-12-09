@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="style/Style.css" type="text/css">
-<title>Submit A Post</title>
-</head>
-<body>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<t:genericPage>
+
+	<jsp:attribute name="title">
+		Submit A Post
+	</jsp:attribute>
+
+	<jsp:body>
 	<form id="addPostForm" method="post" action="CreatePost">
 		Title: <input required type="text" name="title" maxlength="250">
 		Content: 
-		<textarea maxlength="500" required form="addPostForm" name ="content" placeholder="Enter a description of your problem/question here."></textarea>
+		<textarea maxlength="500" required form="addPostForm" name="content"
+				placeholder="Enter a description of your problem/question here."></textarea>
 		<input type="submit" value="Submit">
 	</form>
-</body>
-</html>
+	</jsp:body>
+</t:genericPage>

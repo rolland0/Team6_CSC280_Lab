@@ -1,7 +1,82 @@
 body{
-	font-size: 14px;
+	font-size: 62.5%;
 	background: #5e5e5b;
 	font-family: Verdana, Geneva, sans-serif;
+	color: #1d3750;
+}
+
+header{
+	background-color: #d0d167;
+	color: #7a7b26;
+	font-size: 1.6em;
+	padding: 10px;
+	margin-top: -8px;
+	margin-left: -8px;
+	margin-right: -8px;
+	margin-bottom: 5px;
+}
+
+header .welcomeMessage{
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	text-align: center;
+}
+
+header .logo{
+	float: left;
+}
+
+header a{
+	color: #650411;
+	text-decoration: none;
+}
+
+h1{
+	font-size: 2em;
+	color: #650411;
+}
+
+h2{
+	font-size: 1.5em;
+}
+
+h3{
+	font-size: 1.17em;
+}
+
+h4{
+	font-size: 1em;
+}
+
+h5{
+	font-size: 0.8em;
+}
+
+h6{
+	font-size: .67em;
+}
+
+p{
+	font-size: 1.2em;
+}
+
+span{
+	font-size: 1.2em;
+}
+
+form{
+	background-color: #d0d167;
+	opacity: 0.8;
+	width: 300px;
+	margin: 10px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+nav{
+	
 }
 
 .vote{
