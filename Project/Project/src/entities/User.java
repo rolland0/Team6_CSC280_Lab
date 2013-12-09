@@ -168,4 +168,9 @@ public class User implements Serializable {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
+	@Override public String toString()
+	{
+		return this.username;
+	}
 }
