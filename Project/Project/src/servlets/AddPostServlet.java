@@ -49,6 +49,6 @@ public class AddPostServlet extends HttpServlet {
 
 		pm.create(post);
 
-		response.sendRedirect("Setup");
+		response.sendRedirect("GetPosts");
 	}
 }

@@ -11,17 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import managers.PostManager;
 import entities.Comment;
 import entities.Post;
+import managers.PostManager;
 
-@WebServlet("/Search")
-public class Search extends HttpServlet {
+@WebServlet("/GetPosts")
+public class GetPosts extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB
-	PostManager postManager;
 
+	@EJB
+	PostManager pm;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("posts", pm.getPosts());
+		request.getRequestDispatcher("home.jsp").forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keywords = request.getParameter("searchQuery");
 		if(keywords == null || keywords.isEmpty()) {
@@ -29,7 +33,7 @@ public class Search extends HttpServlet {
 			return;
 		}
 		
-		List<Post> posts = postManager.getPosts();
+		List<Post> posts = pm.getPosts();
 		ArrayList<Post> titleMatches = new ArrayList<>();
 		ArrayList<Post> contentMatches = new ArrayList<>();
 		ArrayList<Comment> commentMatches = new ArrayList<>();
