@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -130,6 +131,7 @@ public class User implements Serializable {
 	}
 
 	public List<Post> getPosts() {
+		if(this.posts== null)this.posts = new ArrayList<Post>();
 		return posts;
 	}
 
@@ -138,6 +140,7 @@ public class User implements Serializable {
 	}
 
 	public List<Comment> getComments() {
+		if(this.comments==null)this.comments = new ArrayList<Comment>();
 		return comments;
 	}
 
@@ -165,6 +168,4 @@ public class User implements Serializable {
 	public String getSalt() {
 		return salt;
 	}
-
-
 }
