@@ -32,7 +32,7 @@ public class AddUserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		if(userManager.isUsernameValid(username)) {
+		if(isUsernameValid(username)) {
 			if(!userManager.isUsernameFree(username)) {
 				invalidInfo = "This username is already taken. Choose another one between " +
 						User.USERNAME_MIN_LENGTH + " and " +
@@ -45,13 +45,13 @@ public class AddUserServlet extends HttpServlet {
 					User.USERNAME_MAX_LENGTH + " characters.";
 		}
 		
-		if(invalidInfo == null && !userManager.isPasswordValid(password)) {
+		if(invalidInfo == null && !isPasswordValid(password)) {
 			invalidInfo = "Please choose a password between " + 
 					User.PASSWORD_MIN_LENGTH + " and " + 
 					User.PASSWORD_MAX_LENGTH + " characters.";
 		}
 		
-		if(invalidInfo == null && !userManager.isEmailValid(email)) {
+		if(invalidInfo == null && !isEmailValid(email)) {
 			
 			invalidInfo = "Please choose an email between " + 
 					User.EMAIL_MIN_LENGTH + " and " + 
@@ -86,6 +86,29 @@ public class AddUserServlet extends HttpServlet {
 			return;
 		}
 		
+	}
+	
+	public boolean isWithinLength(String info, int minLength, int maxLength){
+		return (info.length() >= minLength && 
+				info.length() <= maxLength);
+	}
+	
+	public boolean isPasswordValid(String password) {
+		return !(password == null 
+				|| password.isEmpty()
+				|| !isWithinLength(password, User.PASSWORD_MIN_LENGTH, User.PASSWORD_MAX_LENGTH));
+	}
+	
+	public boolean isEmailValid(String email) {
+		return !(email == null
+				|| email.isEmpty()
+				|| !isWithinLength(email, User.EMAIL_MIN_LENGTH, User.EMAIL_MAX_LENGTH));
+	}
+	
+	public boolean isUsernameValid(String username) {
+		return !(username == null
+				|| username.isEmpty()
+				|| !isWithinLength(username, User.USERNAME_MIN_LENGTH, User.EMAIL_MAX_LENGTH));
 	}
 
 
