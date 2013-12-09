@@ -67,6 +67,10 @@ public class User implements Serializable {
 			length = USERNAME_MAX_LENGTH,
 			unique = true)
 	private String username;
+	
+	@Column(nullable = false,
+			length = 255)
+	private String salt;
 
 	@OneToMany(mappedBy = "poster")
 	private List<Post> posts;
@@ -87,10 +91,6 @@ public class User implements Serializable {
 											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
 	private Set<UserGroups> groups;
 
-	@Column(nullable = false,
-			length = 255)
-	private String salt;
-
 	public User(){
 
 	}
@@ -110,18 +110,22 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public void setNewPassword(String clearPassword) throws NoSuchAlgorithmException{
 		PasswordDigest digest;
 		digest = new PBEDigest(clearPassword.toCharArray(), 1000);
 		this.setPassword(digest.getSaltedDigest());
 		this.setSalt(digest.getSalt());
 	}
-	private void setSalt(String salt) {
-		this.salt = salt;
-		
+	
+	public String getSalt() {
+		return salt;
 	}
-
+	
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -163,9 +167,5 @@ public class User implements Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
-	}
-
-	public String getSalt() {
-		return salt;
 	}
 }

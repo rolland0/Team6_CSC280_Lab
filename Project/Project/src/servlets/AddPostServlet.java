@@ -40,12 +40,11 @@ public class AddPostServlet extends HttpServlet {
 		post.setTitle(title);
 		post.setContent(content);
 		post.setPoster(poster);
-		System.out.println(poster.getPosts()==null);
 		poster.getPosts().add(post);
 		um.update(poster);
 
 		pm.create(post);
 
-		response.sendRedirect("Setup");
+		response.sendRedirect("GetPosts");
 	}
 }

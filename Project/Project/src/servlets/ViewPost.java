@@ -19,7 +19,7 @@ public class ViewPost extends HttpServlet {
 	@EJB
 	PostManager pm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = (int) request.getAttribute("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		Post post = pm.getPost(id);
 		request.setAttribute("post", post);
 		request.getRequestDispatcher("displayPost.jsp").forward(request, response);

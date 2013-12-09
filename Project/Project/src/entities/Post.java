@@ -39,6 +39,10 @@ public class Post implements Serializable {
 	public Post(){
 		timeStamp = new Date();
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public String getTitle() {
 		return title;

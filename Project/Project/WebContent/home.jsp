@@ -21,7 +21,7 @@
 	</c:choose>
 	<br />
 	Search post titles:
-	<form method="post" action="Search">
+	<form method="post" action="GetPosts">
 		<input type="text" name="searchQuery" placeholder="Enter your search term"></input>
 		<button type="submit">Go</button>
 	</form>
@@ -31,14 +31,14 @@
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>
 	
-	<c:if test="${not empty request.posts}">
+	<c:if test="${not empty requestScope.posts}">
 		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
 				<br />
 				<b>${nextPost.title}</b>
 				<br />
-				Posted by: ${nextPost.poster}
+				Posted by: ${nextPost.poster.username}
 				<br />
 				Posted on: ${nextPost.timeStamp}
 				<br />
