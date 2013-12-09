@@ -31,7 +31,7 @@
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>
 	
-	<c:if test="${not empty requestScope.posts}">
+	<c:if test="${not empty posts}">
 		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
