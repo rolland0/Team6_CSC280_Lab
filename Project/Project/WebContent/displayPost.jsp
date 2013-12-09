@@ -19,14 +19,14 @@
 	${post.getContent() }
 	<br />
 	
-	<c:forEach var="comment" items="${post.getComments() }" >
+	<c:forEach var="comment" items="${post.comments }" >
 		<div>
 			<br />
-			Posted by: ${comment.getPoster() }
+			Posted by: ${comment.poster }
 			<br />
-			Posted on: ${comment.getTimeStamp() }
+			Posted on: ${comment.timeStamp) }
 			<br />
-			${comment.getContent() }
+			${commentcontent }
 		</div>
 	</c:forEach>
 	
