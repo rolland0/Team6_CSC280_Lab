@@ -26,10 +26,6 @@ public class UserManager{
 		return em.find(User.class, id);
 	}
 	
-	public User getUser(String username){
-		return em.find(User.class, username);
-	}
-	
 	public User create(User u){
 		em.persist(u);
 		return u;

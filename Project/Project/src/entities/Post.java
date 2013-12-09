@@ -59,6 +59,10 @@ public class Post implements Serializable {
 	public Date getTimeStamp() {
 		return timeStamp;
 	}
+	
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
 
 	public User getPoster() {
 		return poster;
