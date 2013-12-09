@@ -55,15 +55,15 @@ public class UserManager{
 	}
 	
 	public boolean isUsernameFree(String username) {
-		boolean nameTaken = false;
+		boolean nameFree = true;
 		
 		List<User> allUsers = getUsers();
 		for(User u : allUsers){
 			if(u.getUsername().equals(username)){
-				nameTaken = true;
+				nameFree = false;
 			}
 		}
-		return !nameTaken;
+		return nameFree;
 	}
 
 	public boolean isWithinLength(String info, int minLength, int maxLength){
