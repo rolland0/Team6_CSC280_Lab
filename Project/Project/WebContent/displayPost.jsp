@@ -10,7 +10,9 @@
 <title>${post.title }</title>
 </head>
 <body>
-	<b>${post.title}</b>
+	<div style="text-align:center;">
+		<h1><b>${post.title}</b></h1>
+	</div>
 	<br />
 	Posted by: ${post.poster }
 	<br />
