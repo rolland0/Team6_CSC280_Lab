@@ -21,7 +21,7 @@
 	</c:choose>
 	<br />
 	Search post titles:
-	<form method="post" action="Search">
+	<form method="post" action="GetPosts">
 		<input type="text" name="searchQuery" placeholder="Enter your search term"></input>
 		<button type="submit">Go</button>
 	</form>

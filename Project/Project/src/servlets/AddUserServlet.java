@@ -78,7 +78,7 @@ public class AddUserServlet extends HttpServlet {
 			//login the new user 
 			request.login(username, password);
 			
-			response.sendRedirect("Setup");
+			response.sendRedirect("GetPosts");
 		}
 		else{
 			request.setAttribute("error", invalidInfo);
