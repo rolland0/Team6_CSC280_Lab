@@ -70,7 +70,14 @@ public class AddUserServlet extends HttpServlet {
 			user.getGroups().add(UserGroups.members);
 			
 			userManager.create(user);
-			request.getSession().setAttribute("currentUser", user);
+			
+			//if someone is logged in log him/her out
+			if (request.getRemoteUser() != null){
+				request.logout();
+			}
+			//login the new user 
+			request.login(username, password);
+			
 			response.sendRedirect("Setup");
 		}
 		else{
@@ -80,6 +87,8 @@ public class AddUserServlet extends HttpServlet {
 		}
 		
 	}
+	
+
 
 
 }

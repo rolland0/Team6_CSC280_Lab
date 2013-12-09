@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
@@ -14,14 +15,23 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 import us.walkenhorst.crypto.PBEDigest;
 import us.walkenhorst.crypto.PasswordDigest;
 
+
 @Entity
+@NamedQueries({
+	
+	@NamedQuery(name = "User.findName",
+				query = "SELECT u FROM User u where u.username=:username")})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,10 +41,19 @@ public class User implements Serializable {
 	public static final int PASSWORD_MAX_LENGTH = 50;
 	public static final int EMAIL_MIN_LENGTH = 5;
 	public static final int EMAIL_MAX_LENGTH = 100;
-
+	private static final String GENERATOR = "USERS_GEN";
+	
 	@Id
-	@GeneratedValue
-	private int id;
+	@TableGenerator(name = GENERATOR,
+					allocationSize = 10,
+					initialValue = 10)
+	@GeneratedValue(strategy = GenerationType.TABLE,
+					generator = GENERATOR)
+	@Column(name = "user_id",
+			updatable = false,
+			unique = true,
+			nullable = false)
+	private int userId;
 
 	@Column(nullable = false,
 			length = EMAIL_MAX_LENGTH)
@@ -69,7 +88,7 @@ public class User implements Serializable {
 											  name = "user_id",
 											  referencedColumnName = "user_id"),
 					foreignKey = @ForeignKey(name = "FK_user_id",
-											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES users (user_id)"))
+											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
 	private Set<UserGroups> groups;
 
 	public User(){
@@ -106,7 +125,7 @@ public class User implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-
+	
 	public String getEmail() {
 		return email;
 	}
@@ -116,6 +135,7 @@ public class User implements Serializable {
 	}
 
 	public List<Post> getPosts() {
+		if(this.posts== null)this.posts = new ArrayList<Post>();
 		return posts;
 	}
 
@@ -124,6 +144,7 @@ public class User implements Serializable {
 	}
 
 	public List<Comment> getComments() {
+		if(this.comments==null)this.comments = new ArrayList<Comment>();
 		return comments;
 	}
 
@@ -140,5 +161,11 @@ public class User implements Serializable {
 		this.groups = groups;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
 
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 }

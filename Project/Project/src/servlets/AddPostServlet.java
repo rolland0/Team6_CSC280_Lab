@@ -17,7 +17,7 @@ import entities.User;
 @WebServlet("/CreatePost")
 public class AddPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	PostManager pm;
 	@EJB
@@ -25,26 +25,27 @@ public class AddPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/CRUDpage/AddPost.jsp").forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		HttpSession session = request.getSession();
-		
+
 		User poster = (User) session.getAttribute("currentUser");
-		
+
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
+
 		Post post = new Post();
-		
+
 		post.setTitle(title);
 		post.setContent(content);
 		post.setPoster(poster);
-		
+		System.out.println(poster.getPosts()==null);
 		poster.getPosts().add(post);
 		um.update(poster);
-		
+
 		pm.create(post);
-		
+
+		response.sendRedirect("Setup");
 	}
 }
