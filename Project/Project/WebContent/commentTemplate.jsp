@@ -4,8 +4,10 @@
 </head>
 <body>
 	<div class="vote">
-		<button name="upvote">Thumbs up</button>
-		<button name="downvote">Thumbs down</button>
+		<form method="get" action="RateComment">
+			<button name="upvote" type="submit">Thumbs up</button>
+			<button name="downvote" type="submit">Thumbs down</button>
+		</form>
 	</div>
 	<div class="info">
 		<span>${rating }</span> 

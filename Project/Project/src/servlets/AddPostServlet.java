@@ -45,6 +45,6 @@ public class AddPostServlet extends HttpServlet {
 		um.update(poster);
 		
 		pm.create(post);
-		
+		response.sendRedirect("Setup");
 	}
 }
