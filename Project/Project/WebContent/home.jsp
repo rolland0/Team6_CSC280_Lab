@@ -32,7 +32,6 @@
 	</form>
 	
 	<c:if test="${not empty posts}">
-		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
 				<br />
@@ -42,11 +41,12 @@
 				<br />
 				Posted on: ${nextPost.timeStamp}
 				<br />
-				<input type="hidden" value="${nextPost.id}" name="id" ></input>
-				<button type="submit">Open this post</button>
+				<form method="get" action="ViewPost">
+					<input type="hidden" value="${nextPost.id}" name="id" ></input>
+					<button type="submit">Open this post</button>
+				</form>
 			</div>
 		</c:forEach>
-		</form>
 	</c:if>
 
 	<c:if test="${not empty sessionScope.currentUser.username }">
