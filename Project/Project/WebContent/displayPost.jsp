@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="showComment" tagdir="/WEB-INF/tags/"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -29,7 +30,8 @@
 		</div>
 	</c:forEach>
 	
+	<!--<showComment:commentTemplate comment=""></showComment:commentTemplate>-->
 	
-	<a href="Setup">Go back to home page</a>
+	<a href="GetPosts">Go back to home page</a>
 </body>
 </html>
