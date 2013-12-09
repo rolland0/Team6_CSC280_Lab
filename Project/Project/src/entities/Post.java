@@ -39,6 +39,10 @@ public class Post implements Serializable {
 	public Post(){
 		timeStamp = new Date();
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public String getTitle() {
 		return title;
@@ -58,10 +62,6 @@ public class Post implements Serializable {
 
 	public Date getTimeStamp() {
 		return timeStamp;
-	}
-	
-	public void setTimeStamp(Date timeStamp) {
-		this.timeStamp = timeStamp;
 	}
 
 	public User getPoster() {

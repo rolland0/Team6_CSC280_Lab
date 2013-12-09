@@ -53,7 +53,6 @@ public class DebugData extends HttpServlet {
 				post.setContent("Content " + i);
 				post.setPoster(users.get(i));
 				post.setTitle("Title " + i);
-				post.setTimeStamp(Calendar.getInstance().getTime());
 				users.get(i).getPosts().add(post);
 				postManager.create(post);
 				userManager.update(users.get(i));

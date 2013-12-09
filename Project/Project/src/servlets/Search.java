@@ -12,6 +12,9 @@ public class Search extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//do the things and the stuff
+		String keywords = request.getParameter("searchQuery");
+		if(keywords == null || keywords.isEmpty()) {
+			
+		}
 	}
 }

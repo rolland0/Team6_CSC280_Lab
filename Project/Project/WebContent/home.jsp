@@ -31,14 +31,14 @@
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>
 	
-	<c:if test="${not empty request.posts}">
+	<c:if test="${not empty requestScope.posts}">
 		<form method="get" action="ViewPost">
 		<c:forEach var="nextPost" items="${posts }" >
 			<div>
 				<br />
 				<b>${nextPost.title}</b>
 				<br />
-				Posted by: ${nextPost.poster}
+				Posted by: ${nextPost.poster.username}
 				<br />
 				Posted on: ${nextPost.timeStamp}
 				<br />
