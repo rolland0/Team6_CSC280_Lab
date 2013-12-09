@@ -71,11 +71,11 @@ public class AddUserServlet extends HttpServlet {
 			
 			userManager.create(user);
 			
-			//if someone is logged in log them out
+			//if someone is logged in log him/her out
 			if (request.getRemoteUser() != null){
 				request.logout();
 			}
-			//login the new user
+			//login the new user 
 			request.login(username, password);
 			
 			response.sendRedirect("Setup");
