@@ -10,9 +10,9 @@
 <body>
 
 <c:if test="${not empty sessionScope.profileChanges }">
-<c:forEach items="${sessionScope.profileChanges}" var="change">
-</c:forEach>
-		${change}
+	<c:forEach items="${sessionScope.profileChanges}" var="change">
+		<c:out value="${change}" />
+	</c:forEach>
 </c:if>
 
 <h1>Welcome, ${username}</h1> <br>

@@ -27,7 +27,7 @@ public class UserProfileServlet extends HttpServlet {
 		request.setAttribute("username", user.getUsername());
 		request.setAttribute("password", user.getPassword());
 		request.setAttribute("email", user.getEmail());
-		request.getRequestDispatcher("userProfile.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/userProfile.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
