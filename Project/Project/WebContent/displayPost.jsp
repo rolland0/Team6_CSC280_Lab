@@ -10,27 +10,22 @@
 <title>${post.title }</title>
 </head>
 <body>
-	<b>${post.getTitle() }</b>
+	<b>${post.title}</b>
 	<br />
-	Posted by: ${post.getPoster() }
+	Posted by: ${post.poster }
 	<br />
-	Posted on: ${post.getTimeStamp() }
+	Posted on: ${post.timeStamp}
 	<br />
-	${post.getContent() }
+	${post.content }
 	<br />
 	
 	<c:forEach var="comment" items="${post.comments }" >
 		<div>
-			<br />
-			Posted by: ${comment.poster }
-			<br />
-			Posted on: ${comment.timeStamp) }
-			<br />
-			${commentcontent }
+			<showComment:commentTemplate comment="${comment }"></showComment:commentTemplate>
 		</div>
 	</c:forEach>
 	
-	<!--<showComment:commentTemplate comment=""></showComment:commentTemplate>-->
+	
 	
 	<a href="GetPosts">Go back to home page</a>
 </body>
