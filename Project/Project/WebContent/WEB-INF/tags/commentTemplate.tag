@@ -20,7 +20,7 @@
 		<span>${comment.rating }</span> 
 		<span>${comment.poster }</span>
 		<p>${comment.content }</p>
-		<p>${comment.timestamp }</p>
+		<p>${comment.timeStamp }</p>
 	</div>
 	<div class="commentBox">
 		<form method="post" action="AddComment">

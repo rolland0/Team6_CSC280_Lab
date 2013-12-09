@@ -81,6 +81,12 @@ public class Comment implements Serializable {
                 this.replies = replies;
         }
         */
+        
+        public int getRating() {
+			return rating;
+		}
+        
+        
 
 		public Post getPost() {
 			return post;
