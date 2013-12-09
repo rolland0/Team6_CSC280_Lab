@@ -27,6 +27,7 @@
 		</div>
 	</c:forEach>
 	
+	<jsp:include page="WEB-INF/CRUDpage/AddComment.jsp"></jsp:include>
 	
 	
 	<a href="GetPosts">Go back to home page</a>

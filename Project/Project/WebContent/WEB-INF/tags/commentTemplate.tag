@@ -1,6 +1,6 @@
 
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
-<%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Commment" %>
+<%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Comment" %>
 
 <!DOCTYPE html>
 
