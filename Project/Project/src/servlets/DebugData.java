@@ -1,9 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import managers.CommentManager;
 import managers.PostManager;
 import managers.UserManager;
+import entities.Comment;
 import entities.Post;
 import entities.User;
 
@@ -56,6 +56,18 @@ public class DebugData extends HttpServlet {
 				users.get(i).getPosts().add(post);
 				postManager.create(post);
 				userManager.update(users.get(i));
+			}
+			
+			List<Post> posts = postManager.getPosts();
+			for(int i = 0; i < 20; i++) {
+				Comment comment = new Comment();
+				comment.setContent("Comment " + i);
+				Post post = posts.get(new Random().nextInt(posts.size()));
+				comment.setPost(post);
+				comment.setPoster(post.getPoster());
+				post.getComments().add(comment);
+				commentManager.createComment(comment);
+				postManager.update(post);
 			}
 		}
 		

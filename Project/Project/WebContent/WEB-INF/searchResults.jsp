@@ -31,5 +31,16 @@
 	</c:if>
 	<br>
 	
+	<c:if test="${not empty requestScope.commentMatches}">
+		Comment Matches <br>
+		<c:forEach items="${commentMatches}" var="commentMatch">
+			<c:set var="postLink" value="ViewPost?id=${commentMatch.post.id}" />
+			<a href="${postLink}">
+			<c:out value="${commentMatch.content }"></c:out>
+			</a><br />
+		</c:forEach>
+	</c:if>
+	<br>
+	
 </body>
 </html>
