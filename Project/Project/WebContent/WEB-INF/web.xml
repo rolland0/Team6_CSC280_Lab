@@ -25,10 +25,10 @@
   </login-config>
   <error-page>
     <error-code>403</error-code>
-    <location>/WEB-INF/loginError.jsp</location>
+    <location>/WEB-INF/loginPages/loginError.jsp</location>
   </error-page>
   <error-page>
     <error-code>401</error-code>
-    <location>/WEB-INF/loginError.jsp</location>
+    <location>/WEB-INF/loginPages/loginError.jsp</location>
   </error-page>
 </web-app>

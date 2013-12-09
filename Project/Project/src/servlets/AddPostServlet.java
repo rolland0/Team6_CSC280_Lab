@@ -1,13 +1,17 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import managers.PostManager;
 import managers.UserManager;
 import entities.Post;
@@ -15,6 +19,7 @@ import entities.User;
 
 
 @WebServlet("/CreatePost")
+@ServletSecurity(@HttpConstraint(rolesAllowed = {"members","admins"}))
 public class AddPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +36,6 @@ public class AddPostServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		User poster = (User) session.getAttribute("currentUser");
-
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 
@@ -40,7 +44,6 @@ public class AddPostServlet extends HttpServlet {
 		post.setTitle(title);
 		post.setContent(content);
 		post.setPoster(poster);
-		System.out.println(poster.getPosts()==null);
 		poster.getPosts().add(post);
 		um.update(poster);
 
