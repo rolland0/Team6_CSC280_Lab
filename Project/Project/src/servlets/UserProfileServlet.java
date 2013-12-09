@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.ejb.EJB;
@@ -50,7 +51,12 @@ public class UserProfileServlet extends HttpServlet {
 		}
 		
 		if(userManager.isPasswordValid(password)) {
-			user.setPassword(password);
+			try {
+				user.setNewPassword(password);
+				userManager.update(user);
+			} catch (NoSuchAlgorithmException e) {
+				changes.add("Error: Password could not be changed.");
+			}
 			changes.add("Success: password changed successfully.");
 		}
 		else {
