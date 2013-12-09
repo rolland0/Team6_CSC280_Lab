@@ -1,5 +1,12 @@
+
+<%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Commment" %>
+
+<!DOCTYPE html>
+
 <html>
 <head>
+<meta charset="ISO-8859-1">
 <link rel="stylesheet" href="style/Style.css" type="text/css">
 </head>
 <body>
@@ -10,10 +17,10 @@
 		</form>
 	</div>
 	<div class="info">
-		<span>${rating }</span> 
-		<span>${poster }</span>
-		<p>${content }</p>
-		<p>${timestamp }</p>
+		<span>${comment.rating }</span> 
+		<span>${comment.poster }</span>
+		<p>${comment.content }</p>
+		<p>${comment.timestamp }</p>
 	</div>
 	<div class="commentBox">
 		<form method="post" action="AddComment">
