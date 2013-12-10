@@ -1,15 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="style/Style.css" type="text/css">
-<title>User Profile</title>
-</head>
-<body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 
+<t:genericPage>
+	<jsp:attribute name="title">User Profile</jsp:attribute>
+
+	<jsp:body>
 <c:if test="${not empty sessionScope.profileChanges }">
 	<c:forEach items="${sessionScope.profileChanges}" var="change">
 		<c:out value="${change}" />
@@ -24,5 +19,5 @@ Email: <input name="email" type="email" maxlength="100" value="${email}"><br>
 </form>
 
 	<a href="GetPosts">Go back to home page</a>
-</body>
-</html>
+</jsp:body>
+</t:genericPage>
