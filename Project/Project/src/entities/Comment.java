@@ -2,6 +2,8 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 //import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,15 +35,15 @@ public class Comment implements Serializable {
         @Column(updatable=false, nullable=false)
         private Date timeStamp;
         
+        
         @Column(updatable=true, nullable=false)
         private int rating;
         
-        //@OneToMany(mappedBy = "parentComment")
-        //private List<Comment> replies;
+        @OneToMany(mappedBy = "parentComment")
+        private List<Comment> replies;
         
-       // @ManyToOne(optional=true)
-       // @JoinColumn(name="parentID")
-       // private Comment parentComment;
+        @ManyToOne(optional=true)
+        private Comment parentComment;
         
         @ManyToOne(optional=true)
         private Post post;
@@ -73,21 +76,26 @@ public class Comment implements Serializable {
                 this.content = content;
         }
 
-       /* public List<Comment> getReplies() {
+        public List<Comment> getReplies() {
                 return replies;
         }
 
         public void setReplies(List<Comment> replies) {
                 this.replies = replies;
         }
-        */
+        
+        public Comment getParentComment() {
+			return parentComment;
+		}
+        
+        public void setParentComment(Comment parentComment) {
+			this.parentComment = parentComment;
+		}
         
         public int getRating() {
 			return rating;
 		}
         
-        
-
 		public Post getPost() {
 			return post;
 		}
