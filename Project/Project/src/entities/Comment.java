@@ -50,7 +50,6 @@ public class Comment implements Serializable {
 
         public Comment(){
             this.timeStamp = new Date();
-            this.rating = 0;
         }
 
         public Date getTimeStamp(){
@@ -105,10 +104,10 @@ public class Comment implements Serializable {
 		}
 
 		public void incrementRating(){
-			rating ++;
+			rating++;
 		}
 		
 		public void decrementRating(){
-			rating --;
+			rating--;
 		}
 }
