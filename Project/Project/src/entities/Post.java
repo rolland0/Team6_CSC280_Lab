@@ -1,6 +1,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class Post implements Serializable {
 	private List<Comment> comments;
 	
 	public Post(){
-		timeStamp = new Date();
+		timeStamp = Calendar.getInstance().getTime();
 	}
 	
 	public int getId() {
