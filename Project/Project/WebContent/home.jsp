@@ -12,7 +12,7 @@
 	
 	<c:if test="${not empty posts}">
 		<c:forEach var="nextPost" items="${posts }">
-			<div>
+			<div class="post">
 				<br />
 				<b>${nextPost.title}</b>
 				<br />
