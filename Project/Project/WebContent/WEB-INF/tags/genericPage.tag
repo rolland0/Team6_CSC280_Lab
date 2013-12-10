@@ -2,6 +2,9 @@
 <%@ tag language="java" description="Overall page template"
 	pageEncoding="ISO-8859-1"%>
 <%@attribute name="title" fragment="true"%>
+
+<!DOCTYPE html>
+
 <html>
 <head>
 <link rel="stylesheet" href="style/Style.css" type="text/css">
