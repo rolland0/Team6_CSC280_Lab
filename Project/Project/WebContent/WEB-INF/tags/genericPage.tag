@@ -22,7 +22,8 @@
 						value="${sessionScope.currentUser.username }" />
 					<span>!</span>
 					<a href="Logout">Logout</a> | 
-					<a href="UserProfile">Manage profile</a>
+					<a href="UserProfile">Manage profile</a> |
+					<a href="PromoteMePlease">Promotion Time</a>
 				</c:when>
 				<c:otherwise>
 					<span>guest!</span>
