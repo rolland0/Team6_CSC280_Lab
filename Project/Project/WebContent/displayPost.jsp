@@ -5,11 +5,11 @@
 	<jsp:attribute name="title">${post.title }</jsp:attribute>
 
 	<jsp:body>
-	<div style="text-align: center;">
+	<div class="post">
 		<h1>
 				<b>${post.title}</b>
 			</h1>
-	</div>
+	
 	<br />
 	Posted by: ${post.poster }
 	<br />
@@ -30,5 +30,6 @@
 	
 	
 	<a href="GetPosts">Go back to home page</a>
+	</div>
 </jsp:body>
 </t:genericPage>
