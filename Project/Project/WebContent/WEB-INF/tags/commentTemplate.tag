@@ -12,6 +12,7 @@
 <body>
 	<div class="vote">
 		<form method="get" action="RateComment">
+			<input type="hidden" name="id" value="${comment.id }"></input>
 			<button name="upvote" type="submit">Thumbs up</button>
 			<button name="downvote" type="submit">Thumbs down</button>
 		</form>
@@ -25,7 +26,7 @@
 	<div class="commentBox">
 		<form method="post" action="AddComment">
 			<input type="hidden" name="origPost" value="${post.id }" />
-			<textarea rows="5" cols="50" name="comment">Add a comment</textarea>
+			<textarea rows="5" cols="50" name="comment" placeholder="Add a comment"></textarea>
 			<input type="submit" value="Add comment">
 		</form>
 	</div>

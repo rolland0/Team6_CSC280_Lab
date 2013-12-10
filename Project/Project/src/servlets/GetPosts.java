@@ -29,7 +29,7 @@ public class GetPosts extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keywords = request.getParameter("searchQuery");
 		if(keywords == null || keywords.isEmpty()) {
-			response.sendRedirect("Setup");
+			response.sendRedirect("GetPosts");
 			return;
 		}
 		

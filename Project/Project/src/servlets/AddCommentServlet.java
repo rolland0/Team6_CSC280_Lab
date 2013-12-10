@@ -46,5 +46,8 @@ public class AddCommentServlet extends HttpServlet {
 		//comment.setReplies(replies); 
 		
 		cm.createComment(comment);
+
+		request.setAttribute("post", thePost);
+		request.getRequestDispatcher("displayPost.jsp").forward(request, response);
 	}
 }

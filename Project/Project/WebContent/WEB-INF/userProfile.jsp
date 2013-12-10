@@ -23,5 +23,6 @@ Email: <input name="email" type="email" maxlength="100" value="${email}"><br>
 <input type="submit" value="Update Data">
 </form>
 
+	<a href="GetPosts">Go back to home page</a>
 </body>
 </html>

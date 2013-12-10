@@ -10,5 +10,7 @@
 <body>
 	Your username and/or password were invalid!
 	Please try again
+	<br />
+	<a href="GetPosts">Go back to home page</a>
 </body>
 </html>
