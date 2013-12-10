@@ -19,7 +19,7 @@ header{
 header .welcomeMessage{
 	margin-left: auto;
 	margin-right: auto;
-	width: 70%;
+	width: 250px;
 	text-align: center;
 }
 
@@ -30,6 +30,13 @@ header .logo{
 header a{
 	color: #650411;
 	text-decoration: none;
+}
+
+header .searchBox{
+	float: right;
+	width: 300px;
+	margin-top: -60px;
+	margin-right: -50px;
 }
 
 h1{

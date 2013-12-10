@@ -16,17 +16,27 @@
 		<div class="welcomeMessage">
 			<span>Welcome, </span>
 			<c:choose>
-				<c:when test="${currentUser == null }">
-					<span>guest</span>
+				<c:when test="${not empty sessionScope.currentUser.username }">
+					<c:out escapeXml="true"
+						value="${sessionScope.currentUser.username }" />
+					<span>!</span>
+					<a href="Logout">Logout</a> | 
+					<a href="UserProfile">Manage profile</a>
+				</c:when>
+				<c:otherwise>
+					<span>guest!</span>
 					<br>
-					<span>Please <a href="../loginPages/login.jsp">login</a>
-						here.
-					</span>
-				</c:when>
-				<c:when test="${currentUser != null }">
-					<span>${currentUser }</span>
-				</c:when>
+					<a href="LoginForward">Login</a> | 
+					<a href="AddUser">Create An Account</a>
+				</c:otherwise>
 			</c:choose>
+		</div>
+
+		<div class="searchBox">
+			<form method="post" action="GetPosts">
+				<input type="text" name="searchQuery" placeholder="Search Posts"></input>
+				<button type="submit">Search</button>
+			</form>
 		</div>
 
 	</header>
