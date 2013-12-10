@@ -23,13 +23,6 @@
 		<p>${comment.content }</p>
 		<p>${comment.timeStamp }</p>
 	</div>
-	<div class="commentBox">
-		<form method="post" action="AddComment">
-			<input type="hidden" name="origPost" value="${post.id }" />
-			<textarea rows="5" cols="50" name="comment" placeholder="Add a comment"></textarea>
-			<input type="submit" value="Add comment">
-		</form>
-	</div>
 </body>
 </html>
 

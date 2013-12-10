@@ -24,7 +24,9 @@
 		</div>
 	</c:forEach>
 	
-	<jsp:include page="WEB-INF/CRUDpage/AddComment.jsp"></jsp:include>
+	<c:if test="${not empty sessionScope.currentUser }">
+		<jsp:include page="WEB-INF/CRUDpage/AddComment.jsp"></jsp:include>
+	</c:if>
 	
 	
 	<a href="GetPosts">Go back to home page</a>
