@@ -32,12 +32,10 @@
 			</c:choose>
 		</div>
 
-		<div class="searchBox">
-			<form method="post" action="GetPosts">
-				<input type="text" name="searchQuery" placeholder="Search Posts"></input>
-				<button type="submit">Search</button>
+			<form method="post" action="GetPosts" class="searchSite">
+				<input type="text" name="searchQuery" placeholder="Search Posts" class="searchBox"></input>
+				<input type="submit" name="searchBtn" class="searchBtn" value="Search"/>
 			</form>
-		</div>
 
 	</header>
 	<div id="body">

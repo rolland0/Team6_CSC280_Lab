@@ -32,11 +32,28 @@ header a{
 	text-decoration: none;
 }
 
-header .searchBox{
+header .searchSite{
 	float: right;
 	width: 300px;
-	margin-top: -60px;
-	margin-right: -50px;
+	margin-top: -50px;
+	margin-right: -80px;
+}
+
+input[type="text"].searchBox{
+	margin-right: -5px;
+	text-align: center;
+	height: 30px;
+	outline-offset: 15px;
+	-moz-box-shadow: inset 0px 2px 3px 3px rgba(139, 137, 137, .4);
+	-webkit-box-shadow: inset 0px 2px 3px 3px rgba(139, 137, 137, .4);
+	box-shadow: inset 0px 2px 3px 3px rgba(139, 137, 137, .4);
+}
+
+input[type="submit"].searchBtn{
+	color: #608cb5;
+	background: #052745;
+	width: 75px;
+	height: 30px;
 }
 
 h1{
