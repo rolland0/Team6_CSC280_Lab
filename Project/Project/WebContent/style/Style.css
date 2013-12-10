@@ -101,8 +101,28 @@ form{
 	margin-right: auto;
 }
 
-nav{
-	
+.post{
+	background-color: #1d3750;
+	color: #d0d167;
+	font-size: 1.4em;
+	opacity: 0.8;
+	width: 300px;
+	margin: 10px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.post h1{
+	color: #d0d167;
+}
+
+.post a{
+	color: #d0d167;
+}
+
+.openPost{
+	background: none;
 }
 
 .vote{

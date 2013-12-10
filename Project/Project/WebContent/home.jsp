@@ -20,7 +20,7 @@
 				<br />
 				Posted on: ${nextPost.timeStamp}
 				<br />
-				<form method="get" action="ViewPost">
+				<form method="get" action="ViewPost" class="openPost">
 					<input type="hidden" value="${nextPost.id}" name="id"></input>
 					<button type="submit">Open this post</button>
 				</form>
