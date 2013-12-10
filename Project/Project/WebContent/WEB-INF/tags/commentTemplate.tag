@@ -1,15 +1,6 @@
 
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Comment" %>
-
-<!DOCTYPE html>
-
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="style/Style.css" type="text/css">
-</head>
-<body>
 	<div class="vote">
 		<form method="get" action="RateComment">
 			<input type="hidden" name="id" value="${comment.id }"></input>
@@ -23,6 +14,4 @@
 		<p>${comment.content }</p>
 		<p>${comment.timeStamp }</p>
 	</div>
-</body>
-</html>
 

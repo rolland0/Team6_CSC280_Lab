@@ -31,9 +31,9 @@ public class Comment implements Serializable {
         @Column(nullable=false, length=500)
         private String content;
         
-        @Temporal(TemporalType.DATE)
-        @Column(updatable=false, nullable=false)
-        private Date timeStamp;
+    	@Temporal(TemporalType.TIMESTAMP)
+    	@Column(columnDefinition= "DATETIME NOT NULL", updatable=false)
+    	private Date timeStamp;
         
         
         @Column(updatable=true, nullable=false)

@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,8 @@ public class Post implements Serializable {
 	@Column(nullable=false, length=500)
 	private String content;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(updatable=false, nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(columnDefinition= "DATETIME NOT NULL", updatable=false)
 	private Date timeStamp;
 	
 	@ManyToOne(optional = false)
