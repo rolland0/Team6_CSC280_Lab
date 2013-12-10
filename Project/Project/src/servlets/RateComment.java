@@ -25,7 +25,7 @@ public class RateComment extends HttpServlet {
 	@EJB
 	UserManager um;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = (int) request.getAttribute("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		Comment comment = cm.getComment(id);
 		if(request.getParameter("upvote") != null){
 			comment.incrementRating();
@@ -33,6 +33,7 @@ public class RateComment extends HttpServlet {
 		else if(request.getParameter("downvote") != null){
 			comment.decrementRating();
 		}
+		request.setAttribute("post", comment.getPost());
 		request.getRequestDispatcher("displayPost.jsp").forward(request, response);
 	}
 }
