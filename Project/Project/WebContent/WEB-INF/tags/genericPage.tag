@@ -5,12 +5,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="style/Style.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <title><jsp:invoke fragment="title" /></title>
 </head>
 <body>
 	<header>
 		<div class="logo">
-			<img src="/../../assets/logo.png" />
+			<img src="assets/logo.png" />
 		</div>
 
 		<div class="welcomeMessage">

@@ -13,8 +13,8 @@
 	<div class="vote">
 		<form method="get" action="RateComment">
 			<input type="hidden" name="id" value="${comment.id }"></input>
-			<button name="upvote" type="submit">Thumbs up</button>
-			<button name="downvote" type="submit">Thumbs down</button>
+			<button name="upvote" type="submit"><i class="fa fa-thumbs-o-up fa-2x"></i></button>
+			<button name="downvote" type="submit"><i class="fa fa-thumbs-o-down fa-2x"></i></button>
 		</form>
 	</div>
 	<div class="info">
