@@ -18,6 +18,13 @@
 	${post.content }
 	<br />
 	
+	<c:if test="${not empty sessionScope.currentUser }">
+		<form method="get" action="DeletePost">
+			<input type="hidden" name="id" value="${post.id }"></input>
+			<button type="submit">Delete this post?</button>
+		</form>
+	</c:if>
+	
 	<c:forEach var="comment" items="${post.comments }">
 		<div>
 			<t:commentTemplate comment="${comment }"></t:commentTemplate>
