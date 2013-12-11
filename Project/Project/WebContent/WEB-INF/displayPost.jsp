@@ -11,18 +11,17 @@
 			</h1>
 	
 	<br />
-	Posted by: ${post.poster }
-	<br />
-	Posted on: ${post.timeStamp}
-	<br />
-	${post.content }
-	<br />
+	Posted by: ${post.poster } <br />
+	Posted on: ${post.timeStamp} <br />
+	${post.content } <br />
 	
-	<c:forEach var="comment" items="${post.comments }">
-		<div>
-			<t:commentTemplate comment="${comment }"></t:commentTemplate>
-		</div>
-	</c:forEach>
+	<c:if test="${!empty post.comments}">
+		<c:forEach var="comment" items="${post.comments }">
+			<div>
+				<t:commentTemplate comment="${comment }"></t:commentTemplate>
+			</div>
+		</c:forEach>
+	</c:if>
 	
 	<c:if test="${not empty sessionScope.currentUser }">
 		<jsp:include page="CRUDpage/AddComment.jsp"></jsp:include>
