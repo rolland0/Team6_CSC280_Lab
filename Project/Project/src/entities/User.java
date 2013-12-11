@@ -77,7 +77,7 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy="poster")
 	private List<Comment> comments;
-
+	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	@Column(name = "groups",

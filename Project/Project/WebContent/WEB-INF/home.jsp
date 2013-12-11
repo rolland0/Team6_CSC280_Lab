@@ -5,7 +5,11 @@
 	<jsp:attribute name="title">Home</jsp:attribute>
 
 	<jsp:body>
-		
+	
+	<c:if test="${not empty message}">
+ 		${message }
+ 	</c:if>
+	
 	<form method="get" action="CreatePost">
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>

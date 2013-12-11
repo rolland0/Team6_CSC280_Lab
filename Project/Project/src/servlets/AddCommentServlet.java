@@ -22,38 +22,39 @@ import managers.PostManager;
 @ServletSecurity(@HttpConstraint(rolesAllowed = {"members","admins"}))
 public class AddCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@EJB
 	CommentManager cm;
 	@EJB
 	PostManager pm;
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		User user = (User) session.getAttribute("currentUser");
-		
+
 		String content = request.getParameter("comment");
 		int id = Integer.parseInt(request.getParameter("origPost"));
-		
-		Post thePost = pm.getPost(id);
-		Comment comment = new Comment();
-		
-		comment.setContent(content);
-		comment.setPoster(user);
-		comment.setPost(thePost);
-		
-		String origComment = request.getParameter("origComment");
-		if(origComment != null && !origComment.isEmpty()) {
-			int parentCommentId = Integer.parseInt(request.getParameter("origComment"));
-			Comment parentComment = cm.getComment(parentCommentId);
-			comment.setParentComment(parentComment);
-			//parentComment.getReplies().add(comment);
-			//cm.updateComment(parentComment);
-		}
-		
-		cm.createComment(comment);
 
+		Post thePost = pm.getPost(id);
+		if(content!=null && !content.isEmpty()){
+			Comment comment = new Comment();
+
+			comment.setContent(content);
+			comment.setPoster(user);
+			comment.setPost(thePost);
+
+			String origComment = request.getParameter("origComment");
+			if(origComment != null && !origComment.isEmpty()) {
+				int parentCommentId = Integer.parseInt(request.getParameter("origComment"));
+				Comment parentComment = cm.getComment(parentCommentId);
+				comment.setParentComment(parentComment);
+				//parentComment.getReplies().add(comment);
+				//cm.updateComment(parentComment);
+			}
+
+			cm.createComment(comment);
+		}
 		request.setAttribute("post", thePost);
 		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);
 	}
