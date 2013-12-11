@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  package servlets;
+=======
+package servlets;
+>>>>>>> a3ff8d172227a4c655e4341e694e3ae8601c148f
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +25,7 @@ import managers.UserManager;
 @WebServlet("/DeletePost")
 @DeclareRoles({"admins"})
 public class DeletePost extends HttpServlet {
+<<<<<<< HEAD
  private static final long serialVersionUID = 1L;
 
  @EJB
@@ -56,3 +61,40 @@ public class DeletePost extends HttpServlet {
   request.getRequestDispatcher("GetPosts").forward(request, response);
  }
 }
+=======
+	private static final long serialVersionUID = 1L;
+
+	@EJB
+	PostManager pm;
+	@EJB
+	UserManager um;
+	@EJB
+	CommentManager cm;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String message;
+		String userName = request.getRemoteUser();
+		User currentUser = um.getUserByName(userName);
+		//this method needs to be called in order to create the groups set
+		//simply calling toString does not actually hit the database
+		currentUser.getGroups().isEmpty();
+		if(currentUser.getGroups().toString().contains("admins")){
+			int id = Integer.parseInt(request.getParameter("id"));
+			//with this stuff implemented, you can't add any comments so for right now it is commented out
+//			Post post = pm.getPost(id);
+//			if(post.getComments() != null && !post.getComments().isEmpty()){
+//				ArrayList<Comment> commentList = (ArrayList<Comment>) post.getComments();
+//				for(Comment c: commentList){
+//					cm.deleteComment(c.getId());
+//				}
+//			}
+			pm.delete(id);
+			message = "Post successfully deleted";
+		}
+		else
+			message = "You do not have permission to delete posts";
+		
+		request.setAttribute("message", message);
+		request.getRequestDispatcher("GetPosts").forward(request, response);
+	}
+}
+>>>>>>> a3ff8d172227a4c655e4341e694e3ae8601c148f
