@@ -25,7 +25,6 @@ public class GetPosts extends HttpServlet {
 		request.setAttribute("posts", pm.getPosts());
 		if(request.getAttribute("message") != null)
 			request.setAttribute("message", request.getAttribute("message"));
-		request.getRequestDispatcher("home.jsp").forward(request, response);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
 
