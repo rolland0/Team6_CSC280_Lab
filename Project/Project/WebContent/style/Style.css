@@ -3,6 +3,8 @@ body{
 	background: #5e5e5b;
 	font-family: Verdana, Geneva, sans-serif;
 	color: #1d3750;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 header{
@@ -94,7 +96,7 @@ span{
 form{
 	background-color: #d0d167;
 	opacity: 0.8;
-	width: 300px;
+	width: 400px;
 	margin: 10px;
 	padding: 10px;
 	margin-left: auto;
@@ -106,7 +108,7 @@ form{
 	color: #d0d167;
 	font-size: 1.4em;
 	opacity: 0.8;
-	width: 300px;
+	width: 400px;
 	margin: 10px;
 	padding: 10px;
 	margin-left: auto;
@@ -125,10 +127,25 @@ form{
 	background: none;
 }
 
+.searchResults{
+	align-left: auto;
+	align-right: auto;
+	text-align: center;
+}
+
 .vote{
 	float: left;
 	width: 100px;
 	margin: 10px;
 	padding-left: auto;
 	padding-right: auto;
+	background: none;
+}
+
+.addCommentForm{
+	background: none;
+}
+
+#addPostForm{
+	width: 400px;
 }

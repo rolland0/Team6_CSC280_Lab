@@ -7,9 +7,9 @@
 	<c:if test="${not empty requestScope.error }">
 			${requestScope.error }
 	</c:if>
-	<h3>Please enter a username, password, and email.</h3>
 
 	<form method="post" action="AddUser">
+	<h3>Please enter a username, password, and email.</h3>
 		Username: <input name="username" required type="text" maxlength="20"><br>
 		Password: <input name="password" required type="password"
 				maxlength="50"><br>
