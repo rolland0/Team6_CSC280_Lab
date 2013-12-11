@@ -25,7 +25,7 @@
 	</c:forEach>
 	
 	<c:if test="${not empty sessionScope.currentUser }">
-		<jsp:include page="WEB-INF/CRUDpage/AddComment.jsp"></jsp:include>
+		<jsp:include page="CRUDpage/AddComment.jsp"></jsp:include>
 	</c:if>
 	
 	

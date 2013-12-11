@@ -43,11 +43,18 @@ public class AddCommentServlet extends HttpServlet {
 		comment.setPoster(user);
 		comment.setPost(thePost);
 		
-		//comment.setReplies(replies); 
+		String origComment = request.getParameter("origComment");
+		if(origComment != null && !origComment.isEmpty()) {
+			int parentCommentId = Integer.parseInt(request.getParameter("origComment"));
+			Comment parentComment = cm.getComment(parentCommentId);
+			comment.setParentComment(parentComment);
+			//parentComment.getReplies().add(comment);
+			//cm.updateComment(parentComment);
+		}
 		
 		cm.createComment(comment);
 
 		request.setAttribute("post", thePost);
-		request.getRequestDispatcher("displayPost.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);
 	}
 }

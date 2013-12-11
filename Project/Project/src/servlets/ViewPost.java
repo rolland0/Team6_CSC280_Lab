@@ -22,6 +22,6 @@ public class ViewPost extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Post post = pm.getPost(id);
 		request.setAttribute("post", post);
-		request.getRequestDispatcher("displayPost.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);
 	}
 }

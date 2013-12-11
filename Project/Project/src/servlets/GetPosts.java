@@ -23,7 +23,7 @@ public class GetPosts extends HttpServlet {
 	PostManager pm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("posts", pm.getPosts());
-		request.getRequestDispatcher("home.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -37,6 +37,6 @@ public class RateComment extends HttpServlet {
 		cm.updateComment(comment);
 		
 		request.setAttribute("post", comment.getPost());
-		request.getRequestDispatcher("displayPost.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);
 	}
 }
