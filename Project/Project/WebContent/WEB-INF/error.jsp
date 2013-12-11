@@ -7,17 +7,16 @@
 	<jsp:body>
 	<h3>Sad giraffe is sad!</h3>
 	<p>An error occurred!</p>
-	
-	<c:if test="${not empty errorMessages }">
-		<h2>Errors: </h2>
-		<c:forEach var="error" items="${errorMessages }">
-			<c:out value="${error }" />
-		</c:forEach>
+
+	<c:if test="${not empty error}">
+			<h2><c:out value="${error }" /></h2>
 	</c:if>
+	
+	
 		
 		<!-- sad giraffe image here -->
 		<img src="assets/depressed-giraffe.png"/>
-		
+		<br>
 		<a href="GetPosts">Go home?</a>
 	</jsp:body>
 </t:genericPage>

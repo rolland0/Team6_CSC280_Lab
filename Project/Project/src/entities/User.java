@@ -29,9 +29,9 @@ import us.walkenhorst.crypto.PasswordDigest;
 
 @Entity
 @NamedQueries({
-	
+
 	@NamedQuery(name = "User.findName",
-				query = "SELECT u FROM User u where u.username=:username")})
+			query = "SELECT u FROM User u where u.username=:username")})
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -42,17 +42,17 @@ public class User implements Serializable {
 	public static final int EMAIL_MIN_LENGTH = 5;
 	public static final int EMAIL_MAX_LENGTH = 100;
 	private static final String GENERATOR = "USERS_GEN";
-	
+
 	@Id
 	@TableGenerator(name = GENERATOR,
-					allocationSize = 10,
-					initialValue = 10)
+	allocationSize = 10,
+	initialValue = 10)
 	@GeneratedValue(strategy = GenerationType.TABLE,
-					generator = GENERATOR)
+	generator = GENERATOR)
 	@Column(name = "user_id",
-			updatable = false,
-			unique = true,
-			nullable = false)
+	updatable = false,
+	unique = true,
+	nullable = false)
 	private int userId;
 
 	@Column(nullable = false,
@@ -67,7 +67,7 @@ public class User implements Serializable {
 			length = USERNAME_MAX_LENGTH,
 			unique = true)
 	private String username;
-	
+
 	@Column(nullable = false,
 			length = 255)
 	private String salt;
@@ -77,18 +77,18 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy="poster")
 	private List<Comment> comments;
-
+	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	@Column(name = "groups",
-			nullable = false,
-			length = 50)
+	nullable = false,
+	length = 50)
 	@CollectionTable(name = "users_groups",
-					joinColumns = @JoinColumn(nullable = false,
-											  name = "user_id",
-											  referencedColumnName = "user_id"),
-					foreignKey = @ForeignKey(name = "FK_user_id",
-											foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
+	joinColumns = @JoinColumn(nullable = false,
+	name = "user_id",
+	referencedColumnName = "user_id"),
+	foreignKey = @ForeignKey(name = "FK_user_id",
+	foreignKeyDefinition = "FOREIGN KEY (user_id) REFERENCES USER (user_id)"))
 	private Set<UserGroups> groups;
 
 	public User(){
@@ -110,22 +110,22 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public void setNewPassword(String clearPassword) throws NoSuchAlgorithmException{
 		PasswordDigest digest;
 		digest = new PBEDigest(clearPassword.toCharArray(), 1000);
 		this.setPassword(digest.getSaltedDigest());
 		this.setSalt(digest.getSalt());
 	}
-	
+
 	public String getSalt() {
 		return salt;
 	}
-	
+
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -168,7 +168,7 @@ public class User implements Serializable {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
+
 	@Override public String toString()
 	{
 		return this.username;

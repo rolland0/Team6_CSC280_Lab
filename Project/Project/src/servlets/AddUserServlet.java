@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,8 +69,13 @@ public class AddUserServlet extends HttpServlet {
 			}
 			user.setEmail(email);
 			user.getGroups().add(UserGroups.members);
-			
-			userManager.create(user);
+			try{
+				userManager.create(user);
+			}catch(EJBException e){
+				request.setAttribute("error", "We're sorry we couldn't create your account at this time. We are experiencing database issues.");
+				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+				return;
+			}
 			
 			//if someone is logged in log him/her out
 			if (request.getRemoteUser() != null){

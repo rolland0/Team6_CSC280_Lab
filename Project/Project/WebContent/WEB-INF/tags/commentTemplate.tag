@@ -1,6 +1,14 @@
-
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 <%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Comment" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<li>
+	<div class="info">
+		<span>${comment.rating }</span> 
+		<span>${comment.poster }</span>
+		<p>${comment.content }</p>
+		<p>${comment.timeStamp }</p>
+	</div>
 	<div class="vote">
 		<form method="get" action="RateComment" class="vote">
 			<input type="hidden" name="id" value="${comment.id }"></input>
@@ -16,10 +24,11 @@
 			<input type="submit" value="Add comment">
 		</form>
 	</div>
-	<div class="info">
-		<span>${comment.rating }</span> 
-		<span>${comment.poster }</span>
-		<p>${comment.content }</p>
-		<p>${comment.timeStamp }</p>
-	</div>
-
+	<c:if test="${!empty comment.replies}">
+		<c:forEach items="${comment.replies}" var="reply">
+		<ul>
+			<t:commentTemplate comment="${reply }"></t:commentTemplate>
+		</ul>
+		</c:forEach>
+	</c:if>
+</li>

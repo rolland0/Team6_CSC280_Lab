@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -45,7 +46,14 @@ public class AddPostServlet extends HttpServlet {
 		post.setContent(content);
 		post.setPoster(poster);
 		poster.getPosts().add(post);
-		um.update(poster);
+		
+		try{
+			um.update(poster);
+		}catch(EJBException e){
+			request.setAttribute("error", "We're sorry we couldn't create your post at this time. We are experiencing database issues.");
+			request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+			return;
+		}
 
 		//pm.create(post);
 

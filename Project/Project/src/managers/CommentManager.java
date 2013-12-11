@@ -1,5 +1,6 @@
 package managers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -37,6 +38,14 @@ public class CommentManager {
 	
 	public void deleteComment(int commentID){
 		Comment c = getComment(commentID);
-		em.remove(c);
+		//doesn't work yet
+//		if(c.getReplies() != null){
+//			ArrayList<Comment> commentList = (ArrayList<Comment>) c.getReplies();
+//			for(Comment reply: commentList){
+//				deleteComment(c.getId());
+//			}
+//		}
+//		else
+			em.remove(c);
 	}
 }
