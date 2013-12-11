@@ -17,7 +17,7 @@
 		
 		<!-- sad giraffe image here -->
 		<img src="assets/depressed-giraffe.png"/>
-		
+		<br>
 		<a href="GetPosts">Go home?</a>
 	</jsp:body>
 </t:genericPage>
