@@ -14,7 +14,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<img src="assets/logo.png" />
+			<a href="GetPosts"><img src="assets/logo.png" /></a>
 		</div>
 
 		<div class="welcomeMessage">
