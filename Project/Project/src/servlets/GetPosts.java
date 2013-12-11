@@ -23,8 +23,12 @@ public class GetPosts extends HttpServlet {
 	PostManager pm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("posts", pm.getPosts());
+		if(request.getAttribute("message") != null)
+			request.setAttribute("message", request.getAttribute("message"));
+		request.getRequestDispatcher("home.jsp").forward(request, response);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
+
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keywords = request.getParameter("searchQuery");
