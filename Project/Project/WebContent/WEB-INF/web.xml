@@ -31,8 +31,15 @@
     <error-code>401</error-code>
     <location>/WEB-INF/loginPages/loginError.jsp</location>
   </error-page>
+<<<<<<< HEAD
 <!--   <error-page> -->
 <!--    <error-code>500</error-code> -->
 <!--     <location>/WEB-INF/error.jsp</location> -->
 <!--   </error-page> -->
+=======
+  <error-page>
+   <error-code>500</error-code>
+    <location>/WEB-INF/error.jsp</location>
+  </error-page>
+>>>>>>> a3ff8d172227a4c655e4341e694e3ae8601c148f
 </web-app>
