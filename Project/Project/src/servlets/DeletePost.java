@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -8,7 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entities.Comment;
+import entities.Post;
 import entities.User;
+import managers.CommentManager;
 import managers.PostManager;
 import managers.UserManager;
 
@@ -21,6 +27,8 @@ public class DeletePost extends HttpServlet {
 	PostManager pm;
 	@EJB
 	UserManager um;
+	@EJB
+	CommentManager cm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message;
 		String userName = request.getRemoteUser();
@@ -28,9 +36,16 @@ public class DeletePost extends HttpServlet {
 		//this method needs to be called in order to create the groups set
 		//simply calling toString does not actually hit the database
 		currentUser.getGroups().isEmpty();
-		System.out.println(currentUser.getGroups());
 		if(currentUser.getGroups().toString().contains("admins")){
 			int id = Integer.parseInt(request.getParameter("id"));
+			//with this stuff implemented, you can't add any comments so for right now it is commented out
+//			Post post = pm.getPost(id);
+//			if(post.getComments() != null && !post.getComments().isEmpty()){
+//				ArrayList<Comment> commentList = (ArrayList<Comment>) post.getComments();
+//				for(Comment c: commentList){
+//					cm.deleteComment(c.getId());
+//				}
+//			}
 			pm.delete(id);
 			message = "Post successfully deleted";
 		}
