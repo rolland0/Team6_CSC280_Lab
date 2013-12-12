@@ -4,10 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <li>
 	<div class="info">
-		<span>${comment.rating }</span> 
-		<span>${comment.poster }</span>
-		<p>${comment.content }</p>
-		<p>${comment.timeStamp }</p>
+		<span><c:out value="${comment.rating }" escapeXml="true"></c:out></span> 
+		<span><c:out value="${comment.poster }" escapeXml="true"></c:out></span>
+		<p><c:out value="${comment.content }" escapeXml="true"></c:out></p>
+		<p><c:out value="${comment.timeStamp }" escapeXml="true"></c:out></p>
 	</div>
 	<div class="vote">
 		<form method="get" action="RateComment" class="vote">
