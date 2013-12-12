@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 <%@ attribute name="comment" rtexprvalue="true" required="true" type="entities.Comment" %>
+<%@ attribute name="post" rtexprvalue="true" required="true" type="entities.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <li>
 	<div class="info">
@@ -21,7 +22,7 @@
 	</div>
 	<div class="reply">
 			<form method="post" action="AddComment">
-			<input type="hidden" name="origPost" value="${comment.post.id }"/>
+			<input type="hidden" name="origPost" value="${post.id }"/>
 			<input type="hidden" name="origComment" value="${comment.id}"/>
 			<textarea rows="10" cols="50" name="comment" placeholder="Add a comment."></textarea>
 			<input type="submit" value="Add comment">
@@ -30,7 +31,7 @@
 	<c:if test="${!empty comment.replies}">
 		<c:forEach items="${comment.replies}" var="reply">
 		<ul>
-			<t:commentTemplate comment="${reply }"></t:commentTemplate>
+			<t:commentTemplate comment="${reply }" post="${post }"></t:commentTemplate>
 		</ul>
 		</c:forEach>
 	</c:if>

@@ -29,7 +29,7 @@
 		<c:if test="${comment.parentComment == null}" >
 			<div>
 				<ul>
-					<t:commentTemplate comment="${comment }"></t:commentTemplate>
+					<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
 				</ul>
 			</div>
 		</c:if>
