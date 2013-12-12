@@ -5,7 +5,7 @@
 	<jsp:attribute name="title">${post.title }</jsp:attribute>
 
 	<jsp:body>
-	<div id="fullPost">
+	<div class ="post" id="fullPost">
 		<h1>
 				<b><c:out value="${post.title}" escapeXml="true"></c:out></b>
 			</h1>

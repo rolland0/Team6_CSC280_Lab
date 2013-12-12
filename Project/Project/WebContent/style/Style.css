@@ -41,8 +41,7 @@ span{
 }
 
 a{
-	text-decoration: none;
-	color: #650411;
+	color: #d0d167;
 }
 
 form{
@@ -62,7 +61,11 @@ header{
 	margin-top: -8px;
 	margin-left: -8px;
 	margin-right: -8px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
+}
+
+header a{
+	color: #650411;
 }
 
 .logo img{
@@ -102,8 +105,8 @@ input[type="submit"].searchBtn{
 }
 
 .post{
-	background-color: #d0d167;
-	color: #052745;
+	background-color: #052745;
+	color: #d0d167;
 	font-size: 1.4em;
 	opacity: 0.8;
 	width: 400px;
@@ -115,6 +118,7 @@ input[type="submit"].searchBtn{
 
 #fullPost{
 	width: 800px;
+	
 }
 
 .vote{
@@ -125,7 +129,8 @@ input[type="submit"].searchBtn{
 }
 
 .addForm{
-	background-color: #d0d167;
+	background-color: #052745;
+	color: #d0d167;
 	opacity: 0.8;
 	width: 400px;
 	margin: 10px;

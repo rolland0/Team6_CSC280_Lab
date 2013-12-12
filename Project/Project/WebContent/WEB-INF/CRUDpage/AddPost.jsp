@@ -10,7 +10,7 @@
 		<p>Title: </p>
 		<input required type="text" name="title" maxlength="250"><br>
 		<p>Content: </p>
-		<textarea maxlength="500" required form="addPostForm" name="content"
+		<textarea maxlength="500" required class="addForm" name="content"
 				placeholder="Enter a description of your problem/question here."></textarea>
 		<input type="submit" value="Submit">
 	</form>
