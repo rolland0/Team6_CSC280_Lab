@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 //import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Comment implements Serializable {
         @Column(updatable=true, nullable=false)
         private int rating;
         
-        @OneToMany(mappedBy = "parentComment")
+        @OneToMany(mappedBy = "parentComment", cascade=CascadeType.REMOVE)
         private List<Comment> replies;
         
         @ManyToOne(optional=true)
