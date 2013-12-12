@@ -52,6 +52,7 @@
   	<web-resource-collection>
   		<web-resource-name>AdminAccess</web-resource-name>
   		<url-pattern>/WEB-INF/adminPage.jsp</url-pattern>
+  		<http-method>POST</http-method>
   	</web-resource-collection>
   	<auth-constraint>
   		<role-name>admins</role-name>
