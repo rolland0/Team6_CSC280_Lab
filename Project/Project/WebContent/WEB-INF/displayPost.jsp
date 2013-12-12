@@ -7,13 +7,16 @@
 	<jsp:body>
 	<div class="post">
 		<h1>
-				<b>${post.title}</b>
+				<b><c:out value="${post.title}" escapeXml="true"></c:out></b>
 			</h1>
 	
 	<br />
-	Posted by: ${post.poster } <br />
-	Posted on: ${post.timeStamp} <br />
-	${post.content } <br />
+	Posted by: <c:out value="${post.poster }" escapeXml="true"></c:out> <br />
+	Posted on: <c:out value="${post.timeStamp}" escapeXml="true"></c:out> <br />
+	<br>
+	
+	<c:out value="${post.content }" escapeXml="true"></c:out>
+	<br />
 	
 	<c:if test="${not empty sessionScope.currentUser }">
 		<form method="get" action="DeletePost">
