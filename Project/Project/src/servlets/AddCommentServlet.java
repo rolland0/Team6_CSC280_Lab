@@ -19,6 +19,7 @@ import entities.Post;
 import entities.User;
 import managers.CommentManager;
 import managers.PostManager;
+import managers.UserManager;
 
 @WebServlet("/AddComment")
 @ServletSecurity(@HttpConstraint(rolesAllowed = {"members","admins"}))
@@ -29,11 +30,13 @@ public class AddCommentServlet extends HttpServlet {
 	CommentManager cm;
 	@EJB
 	PostManager pm;
-
+	@EJB 
+	UserManager um;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-
-		User user = (User) session.getAttribute("currentUser");
+		//HttpSession session = request.getSession();
+		
+		String username = request.getRemoteUser();
+		User user = um.getUserByName(username);
 
 		String content = request.getParameter("comment");
 		int id = Integer.parseInt(request.getParameter("origPost"));
