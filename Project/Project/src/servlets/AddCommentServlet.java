@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import entities.Comment;
 import entities.Post;
 import entities.User;
@@ -52,8 +54,12 @@ public class AddCommentServlet extends HttpServlet {
 				//parentComment.getReplies().add(comment);
 				//cm.updateComment(parentComment);
 			}
-
-			cm.createComment(comment);
+			try{
+				cm.createComment(comment);
+			}catch(DatabaseException e){
+				request.setAttribute("error", "We're sorry we cannot create a comment at this time. The post/comment you are commenting on may have been deleted.");
+				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+			}
 		}
 		request.setAttribute("post", thePost);
 		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);

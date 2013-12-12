@@ -53,7 +53,7 @@ public class DeletePost extends HttpServlet {
 				message = "Post successfully deleted.";
 			}catch(DatabaseException e){
 				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
-				request.getRequestDispatcher("WEB-INF/error.jsp");
+				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			}
 		}
 		else
