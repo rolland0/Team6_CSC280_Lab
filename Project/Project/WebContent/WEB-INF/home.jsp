@@ -19,11 +19,8 @@
 			<div class="post">
 				<br />
 				<b>${nextPost.title}</b>
-				<br />
-				Posted by: ${nextPost.poster.username}
-				<br />
-				Posted on: ${nextPost.timeStamp}
-				<br />
+				<p>Posted by: ${nextPost.poster.username}</p>
+				<p>Posted on: ${nextPost.timeStamp}</p>
 				<form method="get" action="ViewPost" class="openPost">
 					<input type="hidden" value="${nextPost.id}" name="id"></input>
 					<button type="submit">Open this post</button>

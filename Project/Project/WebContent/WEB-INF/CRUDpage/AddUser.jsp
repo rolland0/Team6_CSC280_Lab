@@ -9,7 +9,7 @@
 	</c:if>
 
 	<form method="post" action="AddUser" class="addForm">
-	<h3>Please enter a username, password, and email.</h3>
+	<h2>Please enter a username, password, and email.</h2>
 		<p>Username: </p>
 		<input name="username" required type="text" maxlength="20"><br>
 		<p>Password: </p>
