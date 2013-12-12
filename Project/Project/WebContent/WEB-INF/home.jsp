@@ -10,7 +10,7 @@
  		${message }
  	</c:if>
 	
-	<form method="get" action="CreatePost">
+	<form method="get" action="CreatePost" id="addPostBtn">
 		<button type="submit" name="addPost">Add a new post</button>
 	</form>
 	
