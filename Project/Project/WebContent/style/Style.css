@@ -1,10 +1,52 @@
 body{
 	font-size: 62.5%;
+	color: #d0d167;
 	background: #5e5e5b;
 	font-family: Verdana, Geneva, sans-serif;
 	color: #1d3750;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+
+h1{
+	font-size: 2em;
+}
+
+h2{
+	font-size: 1.8em;
+}
+
+h3{
+	font-size: 1.6em;
+}
+
+h4{
+	font-size: 1.5em;
+}
+
+h5{
+	font-size: 1.4em;
+}
+
+h6{
+	font-size: 1.3em;
+}
+
+p{
+	font-size: 1.2em;
+}
+
+span{
+	font-size: 1em;
+}
+
+a{
+	text-decoration: none;
+	color: #650411;
+}
+
+form{
+	text-align: center;
 }
 
 header{
@@ -18,35 +60,28 @@ header{
 	margin-bottom: 5px;
 }
 
+.logo img{
+	width: 200px;
+	margin-top: -20px;
+}
+
 header .welcomeMessage{
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 	margin-top: -80px;
 	padding-bottom: 10px;
-	width: 250px;
-	text-align: center;
-}
-.logo img{
-	width: 200px;
-	margin-top: -10px;
-}
-
-header a{
-	color: #650411;
-	text-decoration: none;
 }
 
 header .searchSite{
 	float: right;
-	width: 300px;
 	margin-top: -50px;
-	margin-right: -80px;
 }
 
 input[type="text"].searchBox{
 	margin-right: -5px;
 	text-align: center;
-	height: 30px;
+	height: 25px;
 	outline-offset: 15px;
 	-moz-box-shadow: inset 0px 2px 3px 3px rgba(139, 137, 137, .4);
 	-webkit-box-shadow: inset 0px 2px 3px 3px rgba(139, 137, 137, .4);
@@ -55,57 +90,15 @@ input[type="text"].searchBox{
 
 input[type="submit"].searchBtn{
 	color: #608cb5;
+	font-size: 1.2em;
 	background: #052745;
 	width: 75px;
 	height: 30px;
 }
 
-h1{
-	font-size: 2em;
-	color: #650411;
-}
-
-h2{
-	font-size: 1.5em;
-}
-
-h3{
-	font-size: 1.17em;
-}
-
-h4{
-	font-size: 1em;
-}
-
-h5{
-	font-size: 0.8em;
-}
-
-h6{
-	font-size: .67em;
-}
-
-p{
-	font-size: 1.2em;
-}
-
-span{
-	font-size: 1.2em;
-}
-
-form{
-	background-color: #d0d167;
-	opacity: 0.8;
-	width: 400px;
-	margin: 10px;
-	padding: 10px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .post{
-	background-color: #1d3750;
-	color: #d0d167;
+	background-color: #d0d167;
+	color: #052745;
 	font-size: 1.4em;
 	opacity: 0.8;
 	width: 400px;
@@ -115,37 +108,29 @@ form{
 	margin-right: auto;
 }
 
-.post h1{
-	color: #d0d167;
-}
-
-.post a{
-	color: #d0d167;
-}
-
-.openPost{
-	background: none;
-}
-
-.searchResults{
-	align-left: auto;
-	align-right: auto;
-	text-align: center;
+#fullPost{
+	width: 800px;
 }
 
 .vote{
 	float: left;
 	width: 100px;
 	margin: 10px;
-	padding-left: auto;
-	padding-right: auto;
 	background: none;
 }
 
-.addCommentForm{
-	background: none;
-}
-
-#addPostForm{
+.addForm{
+	background-color: #d0d167;
+	opacity: 0.8;
 	width: 400px;
+	margin: 10px;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
 }
+
+#addPostBtn{
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+	background-color: #052745;
