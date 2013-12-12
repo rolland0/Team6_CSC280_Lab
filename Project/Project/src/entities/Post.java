@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Post implements Serializable {
 	@ManyToOne(optional = false)
 	private User poster;
 
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post", cascade=CascadeType.REMOVE)
 	private List<Comment> comments;
 
 	public Post(){
