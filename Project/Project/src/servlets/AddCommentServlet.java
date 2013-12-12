@@ -39,21 +39,26 @@ public class AddCommentServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("origPost"));
 
 		Post thePost = pm.getPost(id);
+		
 		if(content!=null && !content.isEmpty()){
 			Comment comment = new Comment();
 
 			comment.setContent(content);
 			comment.setPoster(user);
-			comment.setPost(thePost);
 
 			String origComment = request.getParameter("origComment");
+			
 			if(origComment != null && !origComment.isEmpty()) {
 				int parentCommentId = Integer.parseInt(request.getParameter("origComment"));
 				Comment parentComment = cm.getComment(parentCommentId);
 				comment.setParentComment(parentComment);
-				//parentComment.getReplies().add(comment);
-				//cm.updateComment(parentComment);
+
 			}
+			else{
+				comment.setPost(thePost);				
+			}
+			
+					
 			try{
 				cm.createComment(comment);
 			}catch(DatabaseException e){
