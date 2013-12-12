@@ -26,7 +26,7 @@
 					<span>!</span>
 					<a href="Logout">Logout</a> | 
 					<a href="UserProfile">Manage profile</a> |
-					<a href="PromoteMePlease">Promotion Time</a>
+					<a href="Promote">Promotion Time</a>
 				</c:when>
 				<c:otherwise>
 					<span>guest!</span>

@@ -16,8 +16,8 @@ import managers.UserManager;
 import entities.User;
 import entities.UserGroups;
 
-@WebServlet("/PromoteMePlease")
-@ServletSecurity(@HttpConstraint(rolesAllowed={"members"}))
+@WebServlet("/Promote")
+@ServletSecurity(@HttpConstraint(rolesAllowed={"members", "admins"}))
 public class PromoteMePlease extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -27,6 +27,19 @@ public class PromoteMePlease extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("currentUser");
+		if(user != null && !user.getGroups().contains(UserGroups.admins)) {
+			user.getGroups().add(UserGroups.admins);
+			userManager.update(user);
+			response.sendRedirect("GetPosts");
+		}
+		else{
+			request.getRequestDispatcher("/WEB_INF/adminPage.jsp").forward(request, response);
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("userName");
+		User user = userManager.getUserByName(name);
 		if(user != null && !user.getGroups().contains(UserGroups.admins)) {
 			user.getGroups().add(UserGroups.admins);
 			userManager.update(user);
