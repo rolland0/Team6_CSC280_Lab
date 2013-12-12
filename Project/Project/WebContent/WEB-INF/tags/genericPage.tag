@@ -23,10 +23,10 @@
 				<c:when test="${not empty sessionScope.currentUser.username }">
 					<c:out escapeXml="true"
 						value="${sessionScope.currentUser.username }" />
-					<span>!</span>
+					<span>!</span><br>
 					<a href="Logout">Logout</a> | 
 					<a href="UserProfile">Manage profile</a> |
-					<a href="PromoteMePlease">Promotion Time</a>
+					<a href="Promote">Promotion Time</a>
 				</c:when>
 				<c:otherwise>
 					<span>guest!</span>

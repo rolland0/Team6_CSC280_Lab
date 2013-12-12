@@ -23,6 +23,41 @@
       <form-error-page>/WEB-INF/loginPages/loginError.jsp</form-error-page>
     </form-login-config>
   </login-config>
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>AddComment</web-resource-name>
+      <url-pattern>/WEB-INF/CRUDpage/AddComment.jsp</url-pattern>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admins</role-name>
+      <role-name>members</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>AddPost</web-resource-name>
+      <url-pattern>/WEB-INF/CRUDpage/AddPost.jsp</url-pattern>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admins</role-name>
+      <role-name>members</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+  <security-constraint>
+  	<web-resource-collection>
+  		<web-resource-name>AdminAccess</web-resource-name>
+  		<url-pattern>/WEB-INF/adminPage.jsp</url-pattern>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>admins</role-name>
+  	</auth-constraint>
+  </security-constraint>
+  
   <error-page>
     <error-code>403</error-code>
     <location>/WEB-INF/loginPages/loginError.jsp</location>
