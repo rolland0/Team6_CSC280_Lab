@@ -21,6 +21,12 @@ public class CommentManager {
 		return getComments.getResultList();
 	}
 	
+	
+	public List<Comment> getRootComments() {
+		TypedQuery<Comment> getRootComments = em.createQuery("SELECT c FROM Comment WHERE c.parentComment IS NOT NULL", Comment.class);
+		return getRootComments.getResultList();
+	}
+	
 	public Comment getComment(int commentID){
 		return em.find(Comment.class,commentID);
 	}
