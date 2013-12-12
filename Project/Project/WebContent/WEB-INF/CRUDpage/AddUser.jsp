@@ -14,7 +14,8 @@
 		<input name="username" required type="text" maxlength="20"><br>
 		<p>Password: </p>
 		<input name="password" required type="password" maxlength="50"><br>
-		Email: <input name="email" required type="email" maxlength="100"><br>
+		<p>Email: </p>
+		<input name="email" required type="email" maxlength="100"><br>
 		<input type="submit" value="Create Account">
 	</form>
 
