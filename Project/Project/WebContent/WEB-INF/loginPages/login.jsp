@@ -3,11 +3,11 @@
 	<jsp:attribute name="title">Login</jsp:attribute>
 
 	<jsp:body>
-	<form method="POST" action="j_security_check">
-	<h1>Login Here</h1>
-		<span>User Name: </span> 
+	<form method="POST" action="j_security_check" class="addForm">
+	<h2>Login Here</h2>
+		<p>User Name: </p> 
 		<input type="text" name="j_username" /><br /> 
-		<span>Password: </span>
+		<p>Password: </p>
 		<input type="password" name="j_password" /><br /> 
 		<input type="submit" value="Login" />
 	</form>
