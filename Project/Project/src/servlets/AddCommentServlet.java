@@ -48,6 +48,7 @@ public class AddCommentServlet extends HttpServlet {
 
 			comment.setContent(content);
 			comment.setPoster(user);
+			comment.setPost(thePost);
 
 			String origComment = request.getParameter("origComment");
 			
@@ -57,10 +58,6 @@ public class AddCommentServlet extends HttpServlet {
 				comment.setParentComment(parentComment);
 
 			}
-			else{
-				comment.setPost(thePost);				
-			}
-			
 					
 			try{
 				cm.createComment(comment);
