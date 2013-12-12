@@ -8,6 +8,9 @@
 		<span>${comment.poster }</span>
 		<p>${comment.content }</p>
 		<p>${comment.timeStamp }</p>
+		<c:if test="${comment.poster.groups.contains('admins')}">
+			AWESOME
+		</c:if>
 	</div>
 	<div class="vote">
 		<form method="get" action="RateComment" class="vote">

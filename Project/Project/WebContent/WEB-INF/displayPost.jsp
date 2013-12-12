@@ -23,11 +23,13 @@
 	</c:if>
 	
 	<c:forEach var="comment" items="${post.comments }">
-		<div>
-		<ul>
-			<t:commentTemplate comment="${comment }"></t:commentTemplate>
-		</ul>
-		</div>
+		<c:if test="${comment.parentComment == null}" >
+			<div>
+				<ul>
+					<t:commentTemplate comment="${comment }"></t:commentTemplate>
+				</ul>
+			</div>
+		</c:if>
 	</c:forEach>
 	
 	<c:if test="${not empty sessionScope.currentUser }">
