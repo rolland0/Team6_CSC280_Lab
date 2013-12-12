@@ -6,7 +6,7 @@
 	</jsp:attribute>
 
 	<jsp:body>
-	<form class="addForm" method="post" action="CreatePost">
+	<form class="addPostForm" method="post" action="CreatePost">
 		<p>Title: </p>
 		<input required type="text" name="title" maxlength="250"><br>
 		<p>Content: </p>
