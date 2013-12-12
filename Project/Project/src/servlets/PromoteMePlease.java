@@ -33,7 +33,8 @@ public class PromoteMePlease extends HttpServlet {
 			response.sendRedirect("GetPosts");
 		}
 		else{
-			request.getRequestDispatcher("/WEB_INF/adminPage.jsp").forward(request, response);
+			request.setAttribute("userList", userManager.getUsers());
+			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
 		}
 	}
 	
