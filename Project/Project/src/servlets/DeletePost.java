@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import entities.Comment;
 import entities.Post;
 import entities.User;
@@ -30,7 +32,7 @@ public class DeletePost extends HttpServlet {
 	@EJB
 	CommentManager cm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String message;
+		String message = null;
 		String userName = request.getRemoteUser();
 		User currentUser = um.getUserByName(userName);
 		//this method needs to be called in order to create the groups set
@@ -46,8 +48,13 @@ public class DeletePost extends HttpServlet {
 //					cm.deleteComment(c.getId());
 //				}
 //			}
-			pm.delete(id);
-			message = "Post successfully deleted";
+			try{
+				pm.delete(id);
+				message = "Post successfully deleted.";
+			}catch(DatabaseException e){
+				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
+				request.getRequestDispatcher("WEB-INF/error.jsp");
+			}
 		}
 		else
 			message = "You do not have permission to delete posts";
