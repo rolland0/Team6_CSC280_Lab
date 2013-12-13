@@ -5,7 +5,7 @@
 	<jsp:attribute name="title">Noooo!</jsp:attribute>
 
 	<jsp:body>
-	<div class="center">
+	<div class="sadGiraffe">
 	<h3>Sad giraffe is sad!</h3>
 	<p>An error occurred!</p>
 

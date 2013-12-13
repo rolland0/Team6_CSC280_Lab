@@ -6,7 +6,7 @@
 	<jsp:body>
 	<c:if test="${not empty requestScope.titleMatches}">
 	<div class="post">
-		<h1>Title Matches</h1> <br>
+		<h1 class="center">Title Matches</h1> <br>
 		<c:forEach items="${titleMatches}" var="titleMatch">
 			<c:set var="postLink" value="ViewPost?id=${titleMatch.id}" />
 			<a href="${postLink}">
@@ -20,7 +20,7 @@
 	
 	<c:if test="${not empty requestScope.contentMatches}">
 	<div class="post">
-		<h1>Content Matches</h1> <br>
+		<h1 class="center">Content Matches</h1> <br>
 		<c:forEach items="${contentMatches}" var="contentMatch">
 			<c:set var="postLink" value="ViewPost?id=${contentMatch.id}" />
 			<a href="${postLink}">
@@ -34,7 +34,7 @@
 	
 	<c:if test="${not empty requestScope.commentMatches}">
 	<div class="post">
-		<h1>Comment Matches</h1> <br>
+		<h1 class="center">Comment Matches</h1> <br>
 		<c:forEach items="${commentMatches}" var="commentMatch">
 			<c:set var="postLink" value="ViewPost?id=${commentMatch.post.id}" />
 			<a href="${postLink}">
