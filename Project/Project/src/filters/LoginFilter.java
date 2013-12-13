@@ -36,9 +36,11 @@ public class LoginFilter implements Filter {
 			if(session.getAttribute("currentUser") == null){
 				session.setAttribute("currentUser", um.getUserByName(username));
 			}
+			boolean isAdmin = false;
 			if(((User)session.getAttribute("currentUser")).getGroups().contains(UserGroups.admins)){
-				session.setAttribute("isAdmin", true);
+				isAdmin = true;
 			}
+				session.setAttribute("isAdmin", isAdmin);
 		}
 		chain.doFilter(request, resp);
 	}

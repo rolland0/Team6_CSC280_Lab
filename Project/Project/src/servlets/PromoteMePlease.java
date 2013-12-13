@@ -11,11 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import managers.UserManager;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
-import managers.UserManager;
 import entities.User;
 import entities.UserGroups;
 
@@ -31,15 +31,12 @@ public class PromoteMePlease extends HttpServlet {
 		String userName = request.getRemoteUser();
 		User user = (User) userManager.getUserByName(userName);
 		
-		if(user != null) {
-//			if(user.getGroups().contains(UserGroups.admins)){
-//				boolean isAdmin = true;
-//				request.setAttribute("admin", isAdmin);
-//			}
-			else{
-				request.getRequestDispatcher("WEB-INF/adminPassword.jsp").forward(request, response);
-			}
+		if(user != null && (boolean)request.getSession().getAttribute("isAdmin")) {
+			request.setAttribute("userList", userManager.getUsers());
+			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
+			return;
 		}
+		request.getRequestDispatcher("GetPosts").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
