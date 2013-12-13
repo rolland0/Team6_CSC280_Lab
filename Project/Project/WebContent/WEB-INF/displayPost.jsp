@@ -5,28 +5,33 @@
 	<jsp:attribute name="title">${post.title }</jsp:attribute>
 
 	<jsp:body>
-	<div class ="post" id="fullPost">
+	<div class="post" id="fullPost">
+	<div class="postNoComments">
 		<h1>
-				<b><c:out value="${post.title}" escapeXml="true"></c:out></b>
+				<c:out value="${post.title}" escapeXml="true"></c:out>
 			</h1>
 	
-	<br />
-	Posted by: <c:out value="${post.poster }" escapeXml="true"></c:out> <br />
-	Posted on: <c:out value="${post.timeStamp}" escapeXml="true"></c:out> <br />
-	<br>
+	<div class="postShowInfo">
+	<span>Posted by: <c:out value="${post.poster }" escapeXml="true"></c:out> </span><br />
+	<span>Posted on: <c:out value="${post.timeStamp}"
+							escapeXml="true"></c:out></span>
+	</div>
 	
+	<div class="postShow">
 	<c:out value="${post.content }" escapeXml="true"></c:out>
-	<br />
+	</div>
 	
-	<c:if test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
-		<form method="get" action="DeletePost">
+	<c:if
+					test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
+		<form method="get" action="DeletePost" class="deletePostBtn">
 			<input type="hidden" name="id" value="${post.id }"></input>
 			<button type="submit">Delete this post</button>
 		</form>
 	</c:if>
+	</div>
 	
 	<c:forEach var="comment" items="${post.comments }">
-		<c:if test="${comment.parentComment == null}" >
+		<c:if test="${comment.parentComment == null}">
 			<div>
 				<ul>
 					<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>

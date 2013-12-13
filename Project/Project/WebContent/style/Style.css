@@ -123,7 +123,7 @@ input[type="submit"].searchBtn{
 
 .vote{
 	float: left;
-	margin: 10px;
+	margin-right: 10px;
 	background: none;
 }
 
@@ -138,11 +138,31 @@ input[type="submit"].searchBtn{
 	margin-right: auto;
 }
 
+.postNoComments{
+	border-bottom: solid #d0d167;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
 #addPostBtn{
+	background-color: #d0d167;
 	margin-left: auto;
 	margin-right: auto;
 	width: 150px;
-	background-color: #052745;
+	padding: 20px;
+}
+
+.commentContent{
+	margin-left: 100px;
+}
+
+.postShow{
+	font-size: 1.5em;
+}
+
+.postShowInfo{
+	font-size:1em;
+	margin-bottom: 15px;
 }
 
 .sadGiraffe{
@@ -152,5 +172,9 @@ input[type="submit"].searchBtn{
 	padding: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	
+}
+
+.deletePostBtn{
+	float: right;
+	margin-top: -15px;
 }

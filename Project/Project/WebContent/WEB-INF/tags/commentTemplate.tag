@@ -10,11 +10,11 @@
 	<form method="get" action="RateComment" class="vote">
 		<input type="hidden" name="id" value="${comment.id }"></input>
 		<button name="upvote" type="submit">
-			<i class="fa fa-thumbs-o-up fa-2x"></i>
+			<i class="fa fa-thumbs-o-up"></i>
 		</button>
 		<span> <c:out value="${comment.rating }" escapeXml="true"></c:out></span>
 		<button name="downvote" type="submit">
-			<i class="fa fa-thumbs-o-down fa-2x"></i>
+			<i class="fa fa-thumbs-o-down"></i>
 		</button>
 	</form>
 </div>
@@ -27,7 +27,7 @@
 			<em> at </em>
 			<c:out value="${comment.timeStamp }" escapeXml="true"></c:out>
 		</div>
-		<p class>
+		<p class="commentContent">
 			<c:out value="${comment.content }" escapeXml="true"></c:out>
 		</p>
 		<c:if test="${comment.poster.groups.contains('admins')}">
@@ -37,7 +37,7 @@
 
 	<div class="reply">
 		<c:if test="${not empty sessionScope.currentUser }">
-			<form method="post" action="AddComment">
+			<form method="post" action="AddComment" class="commentForm">
 				<input type="hidden" name="origPost" value="${post.id }" /> <input
 					type="hidden" name="origComment" value="${comment.id}" />
 				<textarea name="comment" placeholder="Add a comment."></textarea>

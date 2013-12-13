@@ -3,7 +3,7 @@
 
 	<jsp:attribute name="title">Welcome, Member</jsp:attribute>
 	<jsp:body>
-		<form method="post" action="PromotionPassword">
+		<form method="post" action="PromotionPassword" class="post">
 			<h1><label for="password">Please Enter the Administration Code.</label></h1>
 			<input type="password" name="password"></input>
 			<button type="submit">Enter</button>
