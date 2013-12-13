@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import managers.UserManager;
 import entities.User;
+import entities.UserGroups;
 
 
 @WebFilter("/*")
@@ -34,6 +35,9 @@ public class LoginFilter implements Filter {
 			HttpSession session = request.getSession();
 			if(session.getAttribute("currentUser") == null){
 				session.setAttribute("currentUser", um.getUserByName(username));
+			}
+			if(((User)session.getAttribute("currentUser")).getGroups().contains(UserGroups.admins)){
+				session.setAttribute("isAdmin", true);
 			}
 		}
 		chain.doFilter(request, resp);

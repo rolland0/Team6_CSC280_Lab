@@ -28,10 +28,10 @@ public class PromoteMePlease extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("currentUser");
 		if(user != null) {
-			if(user.getGroups().contains(UserGroups.admins)){
-				boolean isAdmin = true;
-				request.setAttribute("admin", isAdmin);
-			}
+//			if(user.getGroups().contains(UserGroups.admins)){
+//				boolean isAdmin = true;
+//				request.setAttribute("admin", isAdmin);
+//			}
 			request.setAttribute("userList", userManager.getUsers());
 			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
 		}

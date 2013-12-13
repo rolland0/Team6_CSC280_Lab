@@ -18,7 +18,7 @@
 	<c:out value="${post.content }" escapeXml="true"></c:out>
 	<br />
 	
-	<c:if test="${not empty sessionScope.currentUser }">
+	<c:if test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
 		<form method="get" action="DeletePost">
 			<input type="hidden" name="id" value="${post.id }"></input>
 			<button type="submit">Delete this post</button>

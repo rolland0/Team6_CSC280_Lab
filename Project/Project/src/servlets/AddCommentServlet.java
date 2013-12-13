@@ -10,16 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import managers.CommentManager;
+import managers.PostManager;
+import managers.UserManager;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
 import entities.Comment;
 import entities.Post;
 import entities.User;
-import managers.CommentManager;
-import managers.PostManager;
-import managers.UserManager;
 
 @WebServlet("/AddComment")
 @ServletSecurity(@HttpConstraint(rolesAllowed = {"members","admins"}))
