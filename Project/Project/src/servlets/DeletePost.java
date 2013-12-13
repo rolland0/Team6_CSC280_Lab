@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,18 +41,10 @@ public class DeletePost extends HttpServlet {
 		currentUser.getGroups().isEmpty();
 		if(currentUser.getGroups().toString().contains("admins")){
 			int id = Integer.parseInt(request.getParameter("id"));
-			//with this stuff implemented, you can't add any comments so for right now it is commented out
-//			Post post = pm.getPost(id);
-//			if(post.getComments() != null && !post.getComments().isEmpty()){
-//				ArrayList<Comment> commentList = (ArrayList<Comment>) post.getComments();
-//				for(Comment c: commentList){
-//					cm.deleteComment(c.getId());
-//				}
-//			}
 			try{
 				pm.delete(id);
 				message = "Post successfully deleted.";
-			}catch(DatabaseException e){
+			}catch(DatabaseException | EJBException | NullPointerException e){
 				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
 				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			}
