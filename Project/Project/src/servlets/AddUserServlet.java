@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import managers.UserManager;
 import entities.User;
 import entities.UserGroups;
@@ -71,7 +73,7 @@ public class AddUserServlet extends HttpServlet {
 			user.getGroups().add(UserGroups.members);
 			try{
 				userManager.create(user);
-			}catch(EJBException e){
+			}catch(EJBException| NullPointerException| DatabaseException e){
 				request.setAttribute("error", "We're sorry we couldn't create your account at this time. We are experiencing database issues.");
 				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 				return;

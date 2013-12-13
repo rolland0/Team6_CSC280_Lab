@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 import managers.UserManager;
 import entities.User;
@@ -53,7 +56,11 @@ public class UserProfileServlet extends HttpServlet {
 		if(userManager.isPasswordValid(password)) {
 			try {
 				user.setNewPassword(password);
-				userManager.update(user);
+				try{
+					userManager.update(user);
+				}catch(DatabaseException| EJBException| NullPointerException e){
+					
+				}
 			} catch (NoSuchAlgorithmException e) {
 				changes.add("Error: Password could not be changed.");
 			}

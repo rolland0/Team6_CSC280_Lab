@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -38,7 +39,7 @@ public class RateComment extends HttpServlet {
 		}
 		try{
 			cm.updateComment(comment);
-		}catch(DatabaseException e)
+		}catch(DatabaseException| EJBException| NullPointerException e)
 		{
 			request.setAttribute("error", "We're sorry we couldn't rate the comment at this time. Perhaps the comment or post doesn't exist any longer.");
 			request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);

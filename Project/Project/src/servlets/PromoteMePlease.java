@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 import managers.UserManager;
 import entities.User;
@@ -25,15 +28,17 @@ public class PromoteMePlease extends HttpServlet {
 	UserManager userManager;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
+		String userName = request.getRemoteUser();
+		User user = (User) userManager.getUserByName(userName);
+		
 		if(user != null) {
 //			if(user.getGroups().contains(UserGroups.admins)){
 //				boolean isAdmin = true;
 //				request.setAttribute("admin", isAdmin);
 //			}
-			request.setAttribute("userList", userManager.getUsers());
-			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
+			else{
+				request.getRequestDispatcher("WEB-INF/adminPassword.jsp").forward(request, response);
+			}
 		}
 	}
 	
@@ -42,7 +47,11 @@ public class PromoteMePlease extends HttpServlet {
 		User user = userManager.getUserByName(name);
 		if(user != null && !user.getGroups().contains(UserGroups.admins)) {
 			user.getGroups().add(UserGroups.admins);
-			userManager.update(user);
+			try{
+				userManager.update(user);
+			}catch(DatabaseException| EJBException| NullPointerException e){
+				
+			}
 		}
 		response.sendRedirect("GetPosts");
 	}
