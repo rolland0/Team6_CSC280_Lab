@@ -40,6 +40,7 @@ public class PromoteAnotherUser extends HttpServlet {
 				request.getRequestDispatcher("WEB-INF/error.jsp");
 			}
 		}
+		request.setAttribute("success", name + " is now an Administrator.");
 		response.sendRedirect("Promote");
 	}
 

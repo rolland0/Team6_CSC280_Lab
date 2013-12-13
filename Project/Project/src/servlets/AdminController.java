@@ -32,7 +32,7 @@ public class AdminController extends HttpServlet {
 		
 		if(user != null){
 			if(request.getSession().getAttribute("isAdmin")!=null) {
-				
+				if(request.getAttribute("success")!=null) request.setAttribute("success", request.getAttribute("success"));
 				request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
 				return;
 			}

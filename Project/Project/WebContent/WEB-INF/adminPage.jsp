@@ -5,7 +5,9 @@
 
 	<jsp:attribute name="title">Welcome, Administration</jsp:attribute>
 	<jsp:body>
-		
+		<c:if test="${not empty success }">
+			<h1>${success }</h1>
+		</c:if>
 	</jsp:body>
 </t:genericPage>
 </body>
