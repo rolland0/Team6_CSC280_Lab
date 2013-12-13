@@ -20,8 +20,15 @@ public class ViewPost extends HttpServlet {
 	PostManager pm;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		Post post = pm.getPost(id);
-		request.setAttribute("post", post);
-		request.getRequestDispatcher("WEB-INF/displayPost.jsp").forward(request, response);
+		String forwardLocation = "";
+		try{
+			Post post = pm.getPost(id);			
+			request.setAttribute("post", post);
+			forwardLocation = "WEB-INF/displayPost.jsp";
+		}catch(NullPointerException e){
+			request.setAttribute("error", "Get the salt, you've hit a ghost post! This post does not exist.");
+			forwardLocation = "WEB-INF/error.jsp";
+		}
+		request.getRequestDispatcher(forwardLocation).forward(request, response);
 	}
 }
