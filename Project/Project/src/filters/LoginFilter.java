@@ -30,13 +30,13 @@ public class LoginFilter implements Filter {
 		
 		HttpServletRequest request = (HttpServletRequest)req;
 		String username = request.getRemoteUser();
-			
+		boolean isAdmin = false;
 		if(username != null){
 			HttpSession session = request.getSession();
 			if(session.getAttribute("currentUser") == null){
 				session.setAttribute("currentUser", um.getUserByName(username));
 			}
-			boolean isAdmin = false;
+			
 			if(((User)session.getAttribute("currentUser")).getGroups().contains(UserGroups.admins)){
 				isAdmin = true;
 			}
