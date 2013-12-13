@@ -34,7 +34,7 @@
 						<c:when test="${not empty sessionScope.isAdmin }">
 					
 							<a href="UserProfile"> Manage Profile</a>  |
-							<a href="WEB-INF/PromoteAUser.jsp"> Promote A User</a>
+							<a href="PromoteAnotherUser"> Promote A User</a>
 						</c:when>
 					</c:choose>
 				</c:when>

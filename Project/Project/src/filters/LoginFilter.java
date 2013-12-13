@@ -32,7 +32,9 @@ public class LoginFilter implements Filter {
 		String username = request.getRemoteUser();
 		boolean isAdmin = false;
 		if(username != null){
+			
 			HttpSession session = request.getSession();
+			
 			if(session.getAttribute("currentUser") == null){
 				session.setAttribute("currentUser", um.getUserByName(username));
 			}
