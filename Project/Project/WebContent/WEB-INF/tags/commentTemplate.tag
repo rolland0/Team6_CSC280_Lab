@@ -7,13 +7,9 @@
 	<div class="vote">
 		<form method="get" action="RateComment" class="vote">
 			<input type="hidden" name="id" value="${comment.id }"></input>
-			<button name="upvote" type="submit"><i class="fa fa-thumbs-o-up fa-2x"></i></button>
-			<span> <c:out value="${comment.rating }" escapeXml="true"></c:out></span>
-			<button name="downvote" type="submit"><i class="fa fa-thumbs-o-down fa-2x"></i></button>
+			<button name="upvote" type="submit"><i class="fa fa-thumbs-o-up fa-2x"></i></button><span> <c:out value="${comment.rating }" escapeXml="true"></c:out></span><button name="downvote" type="submit"><i class="fa fa-thumbs-o-down fa-2x"></i></button>
 		</form>
 	</div>
-	<br>
-	<br>
 <li>
 	<div class="info">
 		<div><em>Posted by: </em> <c:out value="${comment.poster }" escapeXml="true"></c:out>  <em>     at </em> <c:out value="${comment.timeStamp }" escapeXml="true"></c:out></span> </div>

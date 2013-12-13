@@ -26,7 +26,7 @@
 					<span>!</span><br>
 					<a href="Logout">Logout</a> | 
 					<a href="UserProfile">Manage profile</a> |
-					<a href="Promote">Admins Page</a>
+					<a href="Promote">Administration</a>
 				</c:when>
 				<c:otherwise>
 					<span>guest!</span>
