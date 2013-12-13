@@ -3,7 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import managers.UserManager;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
 
 import entities.User;
-import entities.UserGroups;
+
 
 @WebServlet("/Promote")
 @ServletSecurity(@HttpConstraint(rolesAllowed={"members", "admins"}))
@@ -36,19 +35,5 @@ public class PromoteMePlease extends HttpServlet {
 			return;
 		}
 		request.getRequestDispatcher("GetPosts").forward(request, response);
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("userName");
-		User user = userManager.getUserByName(name);
-		if(user != null && !user.getGroups().contains(UserGroups.admins)) {
-			user.getGroups().add(UserGroups.admins);
-			try{
-				userManager.update(user);
-			}catch(DatabaseException| EJBException| NullPointerException e){
-				
-			}
-		}
-		response.sendRedirect("GetPosts");
 	}
 }
