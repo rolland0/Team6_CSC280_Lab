@@ -7,6 +7,7 @@
 		<class>entities.Post</class>
 		<class>entities.User</class>
 		<class>entities.UserGroups</class>
+		<class>entities.Vote</class>
 		
 		<!-- The following setting should only be used for
 			development and debugging, never for production databases! -->

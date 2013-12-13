@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Comment implements Serializable {
-
         private static final long serialVersionUID = 1L;
 
         @Id
@@ -39,6 +39,9 @@ public class Comment implements Serializable {
         
         @Column(updatable=true, nullable=false)
         private int rating;
+        
+        @OneToMany(cascade=CascadeType.REMOVE)
+        private List<Vote> votes;
         
         @OneToMany(mappedBy = "parentComment", cascade=CascadeType.REMOVE)
         private List<Comment> replies;
@@ -103,12 +106,30 @@ public class Comment implements Serializable {
 		public void setPost(Post post) {
 			this.post = post;
 		}
-
-		public void incrementRating(){
-			rating++;
+		
+		public void addVote(Vote vote) {
+			Iterator<Vote> voteIter = votes.iterator();
+			while(voteIter.hasNext()) {
+				Vote currentVote = voteIter.next();
+				if(vote.getVoter().equals(currentVote.getVoter())) {
+					voteIter.remove();
+					break;
+				}
+			}
+			votes.add(vote);
+			validateRating();
 		}
 		
-		public void decrementRating(){
-			rating--;
+		private void validateRating() {
+			rating = 0;
+			for (Vote vote : votes) {
+				if(vote.isUp()) {
+					rating++;
+				}
+				else {
+					rating--;
+				}
+			}
+			
 		}
 }

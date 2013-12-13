@@ -3,7 +3,6 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -13,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import managers.UserManager;
-
-import org.eclipse.persistence.exceptions.DatabaseException;
-
 import entities.User;
 import entities.UserGroups;
 
@@ -46,7 +42,7 @@ public class PromoteMePlease extends HttpServlet {
 			user.getGroups().add(UserGroups.admins);
 			try{
 				userManager.update(user);
-			}catch(DatabaseException| EJBException| NullPointerException e){
+			}catch(Exception e){
 				
 			}
 		}
