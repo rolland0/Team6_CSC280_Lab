@@ -28,15 +28,17 @@ public class PromoteMePlease extends HttpServlet {
 	UserManager userManager;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
+		String userName = request.getRemoteUser();
+		User user = (User) userManager.getUserByName(userName);
+		
 		if(user != null) {
 			if(user.getGroups().contains(UserGroups.admins)){
-				boolean isAdmin = true;
-				request.setAttribute("admin", isAdmin);
+				request.setAttribute("userList", userManager.getUsers());
+				request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);			
 			}
-			request.setAttribute("userList", userManager.getUsers());
-			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
+			else{
+				request.getRequestDispatcher("WEB-INF/adminPassword.jsp").forward(request, response);
+			}
 		}
 	}
 	
