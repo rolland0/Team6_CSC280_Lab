@@ -73,7 +73,7 @@ public class User implements Serializable {
 	private String salt;
 
 	@OneToMany(mappedBy = "poster")
-	private List<Post> posts;
+	private List<Post> posts = new ArrayList<Post>();
 
 	@OneToMany(mappedBy="poster")
 	private List<Comment> comments;
