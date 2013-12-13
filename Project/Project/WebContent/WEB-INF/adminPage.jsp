@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome, admin</title>
+<title>Welcome, Administrator!</title>
 </head>
 <body>
 	<t:genericPage>
-		<jsp:attribute name="title">This is the admin's page</jsp:attribute>
+		<jsp:attribute name="title">Administration</jsp:attribute>
 		<jsp:body>
 				<br />
 		<c:choose>
@@ -27,7 +27,7 @@
 			</c:when>
 			<c:otherwise>
 				<form method="post" action="PromotionPassword">
-					To become an admin, enter the admin password:
+					<h1><label for="password">Please Enter the Administration Code.</label></h1>
 					<input type="password" name="password"></input>
 					<button type="submit">Enter</button>
 				</form>

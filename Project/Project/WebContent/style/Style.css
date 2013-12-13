@@ -51,6 +51,7 @@ form{
 .center{
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 }
 
 header{
@@ -144,3 +145,11 @@ input[type="submit"].searchBtn{
 	margin-right: auto;
 	width: 150px;
 	background-color: #052745;
+}
+
+.sadGiraffe{
+	background-color: #052745;
+	color: #d0d167;
+	width: 500px;
+	padding: 10px;
+}
