@@ -32,7 +32,7 @@
 						</c:when>
 						
 						<c:when test="${not empty sessionScope.isAdmin }">
-					
+							<a href="Logout">Logout</a> | 
 							<a href="UserProfile"> Manage Profile</a>  |
 							<a href="PromoteAnotherUser"> Promote A User</a>
 						</c:when>
