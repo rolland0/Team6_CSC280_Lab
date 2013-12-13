@@ -30,10 +30,14 @@ public class AdminController extends HttpServlet {
 		String userName = request.getRemoteUser();
 		User user = (User) userManager.getUserByName(userName);
 		
-		if(user != null && request.getSession().getAttribute("isAdmin")!=null) {
-			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
-			return;
+		if(user != null){
+			if(request.getSession().getAttribute("isAdmin")!=null) {
+				request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
+				return;
+			}
+			else{
+				request.getRequestDispatcher("GetPosts").forward(request, response);				
+			}
 		}
-		request.getRequestDispatcher("GetPosts").forward(request, response);
 	}
 }
