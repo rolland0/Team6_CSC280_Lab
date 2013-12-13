@@ -24,9 +24,19 @@
 					<c:out escapeXml="true"
 						value="${sessionScope.currentUser.username }" />
 					<span>!</span><br>
-					<a href="Logout">Logout</a> | 
-					<a href="UserProfile">Manage profile</a> |
-					<a href="Promote">Administration</a>
+					<c:choose>
+						<c:when test="${empty sessionScope.isAdmin }">
+							<a href="Logout">Logout</a> | 
+							<a href="UserProfile">Manage profile</a> |
+							<a href="Promote">Administration</a>
+						</c:when>
+						
+						<c:when test="${not empty sessionScope.isAdmin }">
+					
+							<a href="UserProfile"> Manage Profile</a>  |
+							<a href="WEB-INF/PromoteAUser.jsp"> Promote A User</a>
+						</c:when>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<span>guest!</span>
