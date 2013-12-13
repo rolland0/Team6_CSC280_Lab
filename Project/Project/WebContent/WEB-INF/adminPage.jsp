@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome, admin</title>
+<title>Welcome, Administrator!</title>
 </head>
 <body>
 	<t:genericPage>
