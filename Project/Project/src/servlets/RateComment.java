@@ -39,7 +39,7 @@ public class RateComment extends HttpServlet {
 		}
 		try{
 			cm.updateComment(comment);
-		}catch(DatabaseException| EJBException| NullPointerException e)
+		}catch(DatabaseException| EJBException| NullPointerException | NumberFormatException e)
 		{
 			request.setAttribute("error", "We're sorry we couldn't rate the comment at this time. Perhaps the comment or post doesn't exist any longer.");
 			request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
