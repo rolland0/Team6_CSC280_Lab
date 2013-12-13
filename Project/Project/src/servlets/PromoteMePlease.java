@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 import managers.UserManager;
 import entities.User;
@@ -42,7 +45,11 @@ public class PromoteMePlease extends HttpServlet {
 		User user = userManager.getUserByName(name);
 		if(user != null && !user.getGroups().contains(UserGroups.admins)) {
 			user.getGroups().add(UserGroups.admins);
-			userManager.update(user);
+			try{
+				userManager.update(user);
+			}catch(DatabaseException| EJBException| NullPointerException e){
+				
+			}
 		}
 		response.sendRedirect("GetPosts");
 	}

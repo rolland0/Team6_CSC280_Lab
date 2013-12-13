@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.persistence.exceptions.DatabaseException;
+
 import managers.PostManager;
 import managers.UserManager;
 import entities.Post;
@@ -49,7 +51,7 @@ public class AddPostServlet extends HttpServlet {
 		
 		try{
 			um.update(poster);
-		}catch(EJBException e){
+		}catch(EJBException | DatabaseException| NullPointerException e){
 			request.setAttribute("error", "We're sorry we couldn't create your post at this time. We are experiencing database issues.");
 			request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			return;

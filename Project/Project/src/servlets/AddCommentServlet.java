@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -61,7 +62,7 @@ public class AddCommentServlet extends HttpServlet {
 					
 			try{
 				cm.createComment(comment);
-			}catch(DatabaseException e){
+			}catch(DatabaseException| EJBException| NullPointerException e){
 				request.setAttribute("error", "We're sorry we cannot create a comment at this time. The post/comment you are commenting on may have been deleted.");
 				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			}
