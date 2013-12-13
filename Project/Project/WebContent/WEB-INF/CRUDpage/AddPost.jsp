@@ -6,14 +6,17 @@
 	</jsp:attribute>
 
 	<jsp:body>
-	<form class="addForm" method="post" action="CreatePost">
+	<div class="post">
+	<form method="post" action="CreatePost">
 	<h1>Add a Post</h1>
 		<p>Title: </p>
-		<input required type="text" name="title" maxlength="250"><br>
+		<input required type="text" rows="10" cols="50" name="title" maxlength="250"><br>
 		<p>Content: </p>
-		<textarea maxlength="500" required name="content"
-				placeholder="Enter a description of your problem/question here." class="addPost" ></textarea><br>
+		<textarea required maxlength="500" name="content"
+					placeholder="Enter a description of your problem/question here."></textarea>
+				<br>
 		<input type="submit" value="Submit">
 	</form>
+	</div>
 	</jsp:body>
 </t:genericPage>

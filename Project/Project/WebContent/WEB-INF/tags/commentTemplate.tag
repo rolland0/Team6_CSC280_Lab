@@ -23,7 +23,7 @@
 			<form method="post" action="AddComment">
 			<input type="hidden" name="origPost" value="${post.id }"/>
 			<input type="hidden" name="origComment" value="${comment.id}"/>
-			<textarea rows="10" cols="50" name="comment" placeholder="Add a comment."></textarea>
+			<textarea name="comment" placeholder="Add a comment."></textarea>
 			<input type="submit" value="Add comment">
 		</form>
 	</div>
