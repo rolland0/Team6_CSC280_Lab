@@ -62,7 +62,6 @@ public class AddCommentServlet extends HttpServlet {
 					
 			try{
 				cm.createComment(comment);
-
 			}catch(DatabaseException | NumberFormatException e){
 				request.setAttribute("error", "We're sorry, we cannot create a comment at this time. The post/comment you are commenting on may have been deleted.");
 				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
