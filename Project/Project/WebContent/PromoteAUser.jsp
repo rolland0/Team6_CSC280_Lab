@@ -15,7 +15,7 @@
 					<button type="submit">Enter</button>
 				</form>
 				<br />
-				<a href="PromoteMePlease">Administration</a>
+				<a href="Promote">Administration</a>
 		</div>
 	</jsp:body>
 </t:genericPage>

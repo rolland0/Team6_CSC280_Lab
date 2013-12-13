@@ -3,44 +3,37 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.persistence.exceptions.DatabaseException;
-
-import entities.User;
-import entities.UserGroups;
 import managers.UserManager;
 
-@WebServlet("/PromoteAnotherUser")
+
+import entities.User;
+
+
+@WebServlet("/Promote")
+@ServletSecurity(@HttpConstraint(rolesAllowed={"members", "admins"}))
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	@EJB
 	UserManager userManager;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("userList", userManager.getUsers());
-		request.getRequestDispatcher("WEB-INF/PromoteAUser.jsp").forward(request,response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("userName");
-		User userToPromote = userManager.getUserByName(name);
+		String userName = request.getRemoteUser();
+		User user = (User) userManager.getUserByName(userName);
 		
-		if(userToPromote != null && !userToPromote.getGroups().contains(UserGroups.admins)) {
-			userToPromote.getGroups().add(UserGroups.admins);
-			try{
-				userManager.update(userToPromote);
-			}catch(DatabaseException| EJBException| NullPointerException e){
-				request.setAttribute("error", "We couldn't make " + name + " an Administrator at this time.");
-				request.getRequestDispatcher("WEB-INF/error.jsp");
-			}
+		if(user != null && (boolean)request.getSession().getAttribute("isAdmin")) {
+			request.getRequestDispatcher("WEB-INF/adminPage.jsp").forward(request, response);
+			return;
 		}
-		response.sendRedirect("");
+		request.getRequestDispatcher("GetPosts").forward(request, response);
 	}
-
 }
