@@ -39,10 +39,11 @@ public class DeleteComment extends HttpServlet {
 		User OP = comment.getPoster();
 
 		String message = null;
+		String location = null;
 		//this method needs to be called in order to create the groups set
 		//simply calling toString does not actually hit the database
 		currentUser.getGroups().isEmpty();
-		if(currentUser.getGroups().toString().contains("admins") || currentUser==OP){
+		if(currentUser.getGroups().toString().contains("admins") || currentUser.equals(OP)){
 			try{
 				cm.deleteComment(commentId);
 				Post post = comment.getPost();
@@ -51,15 +52,19 @@ public class DeleteComment extends HttpServlet {
 				OP.getComments().remove(comment);
 				um.update(currentUser);
 				message = "Comment successfully deleted";
+				location = "GetPosts";
 			}catch(DatabaseException | EJBException | NullPointerException e){
 				request.setAttribute("error", "The comment cannot be deleted at this time. It could've been deleted already.");
-				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+				location = "WEB-INF/error.jsp";
 			}
 		}
-		else
+		else{
 			message = "You do not have permission to delete this comment";
+			location = "GetPosts";
+		}
 		
+		System.out.println(message);
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("GetPosts").forward(request, response);
+		request.getRequestDispatcher(location).forward(request, response);
 	}
 }

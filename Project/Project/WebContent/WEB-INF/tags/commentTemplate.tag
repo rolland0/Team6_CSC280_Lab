@@ -22,7 +22,6 @@
 <div>
 	<form method="post" action="DeleteComment">
 		<input type="hidden" name="comment" value="${comment.id }"></input>
-		<input type="hidden" name="poster" value="${comment.poster }"></input>
 		<button type="submit">Delete this comment</button>
 	</form>
 </div>
