@@ -21,8 +21,7 @@
 	<c:out value="${post.content }" escapeXml="true"></c:out>
 	</div>
 	
-	<c:if
-					test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
+	<c:if test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
 		<form method="post" action="DeletePost" class="deletePostBtn">
 			<input type="hidden" name="id" value="${post.id }"></input>
 			<button type="submit">Delete this post</button>
@@ -34,7 +33,14 @@
 		<c:if test="${comment.parentComment == null}">
 			<div>
 				<ul>
-							<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
+					<c:choose>
+             			<c:when test="${empty isAdminComment }">
+               				<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
+             			</c:when>
+             			<c:when test="${not empty isAdminComment }">
+              				<t:adminCommentTemplate comment="${comment }" post="${post }"></t:adminCommentTemplate>
+             			</c:when>
+           			</c:choose>
 				</ul>
 			</div>
 		</c:if>
