@@ -25,12 +25,7 @@ public class UserManager{
 	
 	public List<User> getActiveUsers(){
 		TypedQuery<User> getUsers = em.createQuery("SELECT u FROM User u", User.class);
-		List<User> activeUsers = new ArrayList<User>();
-		for(User u : getUsers.getResultList()){
-			if(u.isActive()){
-				activeUsers.add(u);
-			}
-		}		
+		List<User> activeUsers = new ArrayList<User>();	
 		return activeUsers;
 	}
 	
