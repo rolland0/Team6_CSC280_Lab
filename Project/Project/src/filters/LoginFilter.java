@@ -27,7 +27,6 @@ public class LoginFilter implements Filter {
 	public void destroy() {}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-		
 		HttpServletRequest request = (HttpServletRequest)req;
 		String username = request.getRemoteUser();
 

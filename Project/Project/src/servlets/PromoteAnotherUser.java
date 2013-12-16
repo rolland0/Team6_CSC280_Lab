@@ -3,7 +3,6 @@ package servlets;
 import java.io.IOException;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.persistence.exceptions.DatabaseException;
 
+import managers.UserManager;
 import entities.User;
 import entities.UserGroups;
 import managers.UserManager;
@@ -35,7 +35,7 @@ public class PromoteAnotherUser extends HttpServlet {
 			userToPromote.getGroups().add(UserGroups.admins);
 			try{
 				userManager.update(userToPromote);
-			}catch(DatabaseException| EJBException| NullPointerException e){
+			}catch(Exception e){
 				request.setAttribute("error", "We couldn't make " + name + " an Administrator at this time.");
 				request.getRequestDispatcher("WEB-INF/error.jsp");
 			}
