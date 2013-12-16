@@ -173,4 +173,42 @@ public class User implements Serializable {
 	{
 		return this.username;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((groups == null) ? 0 : groups.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+		result = prime * result + ((salt == null) ? 0 : salt.hashCode());
+		result = prime * result + userId;
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean usersEqual = false;
+		
+		if(obj instanceof User){
+			User other = (User)obj;
+			if(other.getUserId()== this.userId){
+				if(other.getUsername().equals(this.username)){
+					if(other.getEmail().equals(this.password)){
+						if(other.getPassword().equals(this.password)){
+							usersEqual = true;
+						}
+					}
+				}
+			}
+		}
+		return usersEqual;
+	}
+	
 }

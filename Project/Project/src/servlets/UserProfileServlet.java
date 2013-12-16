@@ -29,9 +29,6 @@ public class UserProfileServlet extends HttpServlet {
 	UserManager userManager;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
-		request.setAttribute("user", user);
 		request.getRequestDispatcher("WEB-INF/userProfile.jsp").forward(request, response);
 	}
 
@@ -41,10 +38,15 @@ public class UserProfileServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
+		User user = userManager.getUserByName(((User)session.getAttribute("currentUser")).getUsername());
 		
 		if(userManager.isEmailValid(email)) {
 			user.setEmail(email);
+			try{
+				userManager.update(user);
+			}catch(DatabaseException| EJBException| NullPointerException e){
+				
+			}
 			changes.add("Success: Email changed successfully.");
 		}
 		else {
@@ -67,7 +69,6 @@ public class UserProfileServlet extends HttpServlet {
 		else {
 			changes.add("Error: Password could not be changed.");
 		}
-		
 		session.setAttribute("profileChanges", changes);
 		response.sendRedirect("UserProfile");
 	}

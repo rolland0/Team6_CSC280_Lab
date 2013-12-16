@@ -50,14 +50,12 @@ public class AddPostServlet extends HttpServlet {
 		poster.getPosts().add(post);
 		
 		try{
-			um.update(poster);
+			pm.create(post);
 		}catch(EJBException | DatabaseException| NullPointerException e){
 			request.setAttribute("error", "We're sorry we couldn't create your post at this time. We are experiencing database issues.");
 			request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			return;
 		}
-
-		//pm.create(post);
 
 		response.sendRedirect("GetPosts");
 	}
