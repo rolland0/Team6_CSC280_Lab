@@ -82,4 +82,14 @@ public class Post implements Serializable {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Post) {
+			Post other = (Post) obj;
+			if(this.id == other.id)
+				return true;
+		}
+		return false;
+	}
 }
