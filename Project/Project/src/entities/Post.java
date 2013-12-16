@@ -85,11 +85,28 @@ public class Post implements Serializable {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Post) {
+
+		boolean postsEqual = false;
+
+		if(obj instanceof Post){
 			Post other = (Post) obj;
-			if(this.id == other.id)
-				return true;
+
+			if(other.getId() == this.id){
+
+				if(other.getPoster().equals(this.poster)){
+					if(other.getTimeStamp().equals(this.timeStamp)){
+
+						if(other.getTitle().equals(this.title)){
+
+							if(other.getContent().equals(this.content)){
+								postsEqual = true;
+							}
+
+						}
+					}
+				}
+			}
 		}
-		return false;
+		return postsEqual;
 	}
 }
