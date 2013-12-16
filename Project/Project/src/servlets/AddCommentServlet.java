@@ -38,7 +38,11 @@ public class AddCommentServlet extends HttpServlet {
 		
 		String username = request.getRemoteUser();
 		User user = um.getUserByName(username);
-
+		
+		user.getGroups().isEmpty();
+		if(user!= null && user.getGroups().toString().contains("admins")){
+			request.setAttribute("isAdminComment",true);
+		}
 		String content = request.getParameter("comment");
 		int id = Integer.parseInt(request.getParameter("origPost"));
 

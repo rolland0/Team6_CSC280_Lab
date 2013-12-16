@@ -42,9 +42,13 @@ public class DeletePost extends HttpServlet {
 		if(currentUser.getGroups().toString().contains("admins")){
 			int id = Integer.parseInt(request.getParameter("id"));
 			try{
-				pm.delete(id);
+				currentUser.getPosts().isEmpty();
+				System.out.println(currentUser.getPosts().contains(pm.getPost(id)));
+				System.out.println(currentUser.getPosts().size());
 				currentUser.getPosts().remove(pm.getPost(id));
+				System.out.println(currentUser.getPosts().size());
 				um.update(currentUser);
+				pm.delete(id);
 				message = "Post successfully deleted.";
 			}catch(DatabaseException | EJBException | NullPointerException e){
 				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
