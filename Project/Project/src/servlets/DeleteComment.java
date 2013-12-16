@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
@@ -21,38 +20,45 @@ import managers.CommentManager;
 import managers.PostManager;
 import managers.UserManager;
 
-@WebServlet("/DeletePost")
-@DeclareRoles({"admins"})
-public class DeletePost extends HttpServlet {
+@WebServlet("/DeleteComment")
+@DeclareRoles({"members","admins"})
+public class DeleteComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	PostManager pm;
+	CommentManager cm;
 	@EJB
 	UserManager um;
 	@EJB
-	CommentManager cm;
+	PostManager pm;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String message = null;
 		String userName = request.getRemoteUser();
 		User currentUser = um.getUserByName(userName);
+		int commentId = Integer.parseInt(request.getParameter("comment"));
+		Comment comment = cm.getComment(commentId);
+		User OP = comment.getPoster();
+
+		String message = null;
 		//this method needs to be called in order to create the groups set
 		//simply calling toString does not actually hit the database
 		currentUser.getGroups().isEmpty();
-		if(currentUser.getGroups().toString().contains("admins")){
-			int id = Integer.parseInt(request.getParameter("id"));
+		if(currentUser.getGroups().toString().contains("admins") || currentUser==OP){
 			try{
-				pm.delete(id);
-				currentUser.getPosts().remove(pm.getPost(id));
-				message = "Post successfully deleted.";
+				cm.deleteComment(commentId);
+				Post post = comment.getPost();
+				post.getComments().remove(comment);
+				pm.update(post);
+				OP.getComments().remove(comment);
+				um.update(currentUser);
+				message = "Comment successfully deleted";
 			}catch(DatabaseException | EJBException | NullPointerException e){
-				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
+				request.setAttribute("error", "The comment cannot be deleted at this time. It could've been deleted already.");
 				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
 			}
 		}
 		else
-			message = "You do not have permission to delete posts";
-
+			message = "You do not have permission to delete this comment";
+		
 		request.setAttribute("message", message);
 		request.getRequestDispatcher("GetPosts").forward(request, response);
 	}
