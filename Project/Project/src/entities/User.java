@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -75,7 +76,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "poster")
 	private List<Post> posts = new ArrayList<Post>();
 
-	@OneToMany(mappedBy="poster")
+	@OneToMany(mappedBy="poster", cascade=CascadeType.REMOVE)
 	private List<Comment> comments;
 	
 	@ElementCollection
