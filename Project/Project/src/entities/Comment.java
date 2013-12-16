@@ -111,7 +111,7 @@ public class Comment implements Serializable {
 			Iterator<Vote> voteIter = votes.iterator();
 			while(voteIter.hasNext()) {
 				Vote currentVote = voteIter.next();
-				if(vote.getVoter().equals(currentVote.getVoter())) {
+				if(vote.getVoter().getUserId() == currentVote.getVoter().getUserId()) {
 					voteIter.remove();
 					break;
 				}

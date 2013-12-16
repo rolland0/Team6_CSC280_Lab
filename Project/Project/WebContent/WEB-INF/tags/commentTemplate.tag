@@ -9,7 +9,6 @@
 <div class="vote">
 	<form method="get" action="RateComment" class="vote">
 		<input type="hidden" name="id" value="${comment.id }"/>
-		<!--<input type="hidden" name="voter" value="${sessionScope.currentUser.id}"/>-->
 		<button name="upvote" type="submit">
 			<i class="fa fa-thumbs-o-up fa-2x"></i>
 		</button>
