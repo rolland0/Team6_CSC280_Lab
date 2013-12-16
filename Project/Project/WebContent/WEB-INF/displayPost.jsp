@@ -34,15 +34,7 @@
 		<c:if test="${comment.parentComment == null}">
 			<div>
 				<ul>
-					<c:choose>
-						<c:when test="${empty isAdminComment }">
 							<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
-						</c:when>
-							
-						<c:when test="${not empty isAdminComment }">
-							<t:adminCommentTemplate comment="${comment }" post="${post }"></t:adminCommentTemplate>
-						</c:when>
-					</c:choose>
 				</ul>
 			</div>
 		</c:if>

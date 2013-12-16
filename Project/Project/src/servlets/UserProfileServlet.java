@@ -38,7 +38,7 @@ public class UserProfileServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("currentUser");
+		User user = userManager.getUserByName(((User)session.getAttribute("currentUser")).getUsername());
 		
 		if(userManager.isEmailValid(email)) {
 			user.setEmail(email);
