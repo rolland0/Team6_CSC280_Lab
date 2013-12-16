@@ -25,6 +25,8 @@ public class RemoveUser extends HttpServlet {
 		int userID = Integer.parseInt(request.getParameter("id"));
 		
 		User user = um.getUser(userID);
+		user.setActive(false);
+		um.update(user);
 		
 		
 	}

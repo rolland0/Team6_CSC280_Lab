@@ -21,10 +21,5 @@
 <a href="GetPosts">Go back to home page</a>
 </form>
 
-<form method="post" action="RemoveUser" class="deletePostBtn">
-	<input type="hidden" name="id" value="${user.id }"></input>
-	<button type="submit">Remove My Account</button>
-</form>
-
 </jsp:body>
 </t:genericPage>
