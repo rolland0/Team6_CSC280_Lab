@@ -31,9 +31,7 @@ public class UserProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("currentUser");
-		request.setAttribute("username", user.getUsername());
-		request.setAttribute("password", user.getPassword());
-		request.setAttribute("email", user.getEmail());
+		request.setAttribute("user", user);
 		request.getRequestDispatcher("WEB-INF/userProfile.jsp").forward(request, response);
 	}
 

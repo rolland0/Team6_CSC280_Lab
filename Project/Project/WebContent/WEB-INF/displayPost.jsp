@@ -23,7 +23,7 @@
 	
 	<c:if
 					test="${not empty sessionScope.currentUser and sessionScope.isAdmin}">
-		<form method="get" action="DeletePost" class="deletePostBtn">
+		<form method="post" action="DeletePost" class="deletePostBtn">
 			<input type="hidden" name="id" value="${post.id }"></input>
 			<button type="submit">Delete this post</button>
 		</form>
