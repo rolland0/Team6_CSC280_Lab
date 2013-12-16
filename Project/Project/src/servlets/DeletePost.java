@@ -44,6 +44,7 @@ public class DeletePost extends HttpServlet {
 			try{
 				pm.delete(id);
 				currentUser.getPosts().remove(pm.getPost(id));
+				um.update(currentUser);
 				message = "Post successfully deleted.";
 			}catch(DatabaseException | EJBException | NullPointerException e){
 				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");

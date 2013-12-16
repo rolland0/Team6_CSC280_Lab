@@ -12,11 +12,11 @@
 </c:if>
 
 <form method="post" action="UserProfile" class="post">
-<h1>Welcome, ${user.username}</h1>
+<h1>Welcome, ${currentUser.username}</h1>
 <p>Password: </p>
 <input name="password" type="password" maxlength="50"><br>
 <p>Email: </p>
-<input name="email" type="email" maxlength="100" value="${user.email}"><br>
+<input name="email" type="email" maxlength="100" value="${currentUser.email}"><br>
 <input type="submit" value="Update Data"><br>
 <a href="GetPosts">Go back to home page</a>
 </form>
