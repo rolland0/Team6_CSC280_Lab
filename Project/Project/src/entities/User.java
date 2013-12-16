@@ -56,6 +56,9 @@ public class User implements Serializable {
 	nullable = false)
 	private int userId;
 
+	@Column(nullable=false)
+	private boolean active;
+	
 	@Column(nullable = false,
 			length = EMAIL_MAX_LENGTH)
 	private String email;
@@ -93,7 +96,7 @@ public class User implements Serializable {
 	private Set<UserGroups> groups;
 
 	public User(){
-
+		setActive(true);
 	}
 
 	public String getUsername() {
@@ -173,5 +176,13 @@ public class User implements Serializable {
 	@Override public String toString()
 	{
 		return this.username;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 }

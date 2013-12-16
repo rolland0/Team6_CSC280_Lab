@@ -1,5 +1,6 @@
 package managers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -20,6 +21,17 @@ public class UserManager{
 	public List<User> getUsers(){
 		TypedQuery<User> getUsers = em.createQuery("SELECT u FROM User u", User.class);
 		return getUsers.getResultList();
+	}
+	
+	public List<User> getActiveUsers(){
+		TypedQuery<User> getUsers = em.createQuery("SELECT u FROM User u", User.class);
+		List<User> activeUsers = new ArrayList<User>();
+		for(User u : getUsers.getResultList()){
+			if(u.isActive()){
+				activeUsers.add(u);
+			}
+		}		
+		return activeUsers;
 	}
 	
 	public User getUser(int id){ 
