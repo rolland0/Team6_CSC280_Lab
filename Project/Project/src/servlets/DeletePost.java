@@ -32,7 +32,7 @@ public class DeletePost extends HttpServlet {
 	UserManager um;
 	@EJB
 	CommentManager cm;
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message = null;
 		String userName = request.getRemoteUser();
 		User currentUser = um.getUserByName(userName);
