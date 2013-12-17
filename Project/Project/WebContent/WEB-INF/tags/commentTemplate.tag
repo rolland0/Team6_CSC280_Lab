@@ -19,7 +19,7 @@
 	</form>
 </div>
 
-<c:if test="${comment.poster.username eq sessionScope.currentUser.username}">
+<c:if test="${(comment.poster.username eq sessionScope.currentUser.username) or sessionScope.isAdmin}">
 <div>
 	<form method="post" action="DeleteComment">
 		<input type="hidden" name="comment" value="${comment.id }"></input>
