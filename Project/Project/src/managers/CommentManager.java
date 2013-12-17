@@ -2,6 +2,7 @@ package managers;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import entities.Comment;
+import entities.Vote;
 
 @Stateless
 @LocalBean
@@ -41,8 +43,14 @@ public class CommentManager {
 		return c;
 	}
 	
+	@EJB
+	VoteManager vm;
 	public void deleteComment(int commentID){
 		Comment c = getComment(commentID);
+		List<Vote> votes = c.getVotes();
+		for (Vote v: votes){
+			vm.deleteVote(v.getId());
+		}
 		em.remove(c);
 	}
 }
