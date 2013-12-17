@@ -34,6 +34,7 @@ public class DeletePost extends HttpServlet {
 	CommentManager cm;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message = null;
+		String location = null;
 		String userName = request.getRemoteUser();
 		User currentUser = um.getUserByName(userName);
 		//this method needs to be called in order to create the groups set
@@ -46,15 +47,18 @@ public class DeletePost extends HttpServlet {
 				um.update(currentUser);
 				pm.delete(id);
 				message = "Post successfully deleted.";
+				location = "GetPosts";
 			}catch(DatabaseException | EJBException | NullPointerException e){
 				request.setAttribute("error", "The post cannot be deleted at this time. It could've been deleted already.");
-				request.getRequestDispatcher("WEB-INF/error.jsp").forward(request, response);
+				location = "WEB-INF/error.jsp";
 			}
 		}
-		else
+		else{
 			message = "You do not have permission to delete posts";
+			location = "GetPosts";
+		}
 
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("GetPosts").forward(request, response);
+		request.getRequestDispatcher(location).forward(request, response);
 	}
 }
