@@ -43,16 +43,19 @@
 					</c:forEach>
 					
 					<c:choose>
-             			<c:when test="${not isAdminComment }">
-               				<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
-             			</c:when>
+					
              			<c:when test="${isAdminComment }">
               				<t:adminCommentTemplate comment="${comment }" post="${post }"></t:adminCommentTemplate>
              			</c:when>
+             			
+             			<c:otherwise>
+               				<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
+             			</c:otherwise>
+           			
            			</c:choose>
 				</ul>
 			</div>
-			<c:set var="isAdminComment" value="false"/>
+			
 		</c:if>
 	</c:forEach>
 	
