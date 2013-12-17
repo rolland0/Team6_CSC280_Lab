@@ -22,9 +22,10 @@
 			<p class="commentContent">
 				<c:out value="${comment.content }" escapeXml="true"></c:out>
 			</p>
-				<div style="text-align:center;">
+				<div style="text-align:center;border-bottom: solid #052745;padding-bottom: 15px;margin-bottom: 5px;">
 					<h5><c:out value="${comment.timeStamp }" escapeXml="true"></c:out></h5>
 				</div>
+				
 			</div>
 
 		</div>
