@@ -45,17 +45,17 @@
 					<div>
 						<ul>
 
-							<c:set var="isAdminComment" value="false" />
+							<c:set var="isAdminReply" value="false" />
 
-							<c:forEach var="group" items="${comment.poster.groups }">
+							<c:forEach var="group" items="${reply.poster.groups }">
 								<c:if test="${group.toString() eq 'admins' }">
-									<c:set var="isAdminComment" value="true" />
+									<c:set var="isAdminReply" value="true" />
 								</c:if>
 							</c:forEach>
 
 							<c:choose>
 
-								<c:when test="${isAdminComment }">
+								<c:when test="${isAdminReply }">
 									<t:adminCommentTemplate comment="${reply }" post="${post }"></t:adminCommentTemplate>
 								</c:when>
 
