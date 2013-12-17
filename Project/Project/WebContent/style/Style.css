@@ -120,6 +120,9 @@ input[type="submit"].searchBtn{
 .adminComment{
 	background-color: #d0d167;
 	color: #052745;
+	border-bottom: solid #052745;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
 }
 
 #fullPost{
