@@ -19,13 +19,14 @@
 	</form>
 </div>
 
+<c:if test="${comment.poster.username eq sessionScope.currentUser.username}">
 <div>
 	<form method="post" action="DeleteComment">
 		<input type="hidden" name="comment" value="${comment.id }"></input>
 		<button type="submit">Delete this comment</button>
 	</form>
 </div>
-
+</c:if>
 <li>
 	<div class="info">
 		<div class="commenterInfo">
