@@ -42,28 +42,33 @@ public class DeleteComment extends HttpServlet {
 		String location = null;
 		//this method needs to be called in order to create the groups set
 		//simply calling toString does not actually hit the database
-		currentUser.getGroups().isEmpty();
-		if(currentUser.getGroups().toString().contains("admins") || currentUser.getUsername().equals(poster.getUsername())){
-			try{
-				Post post = comment.getPost();
-				post.getComments().remove(comment);
-				pm.update(post);
-				poster.getComments().remove(comment);
-				um.update(poster);
-				cm.deleteComment(commentId);
-				message = "Comment successfully deleted";
-				location = "GetPosts";
-			}catch(DatabaseException | EJBException | NullPointerException e){
-				request.setAttribute("error", "The comment cannot be deleted at this time. It could've been deleted already.");
-				location = "WEB-INF/error.jsp";
+		if(currentUser!= null){
+			currentUser.getGroups().isEmpty();
+			if(currentUser.getGroups().toString().contains("admins") || currentUser.getUsername().equals(poster.getUsername())){
+				try{
+					Post post = comment.getPost();
+					post.getComments().remove(comment);
+					pm.update(post);
+					poster.getComments().remove(comment);
+					um.update(poster);
+					cm.deleteComment(commentId);
+					message = "Comment successfully deleted";
+					location = "GetPosts";
+				}catch(DatabaseException | EJBException | NullPointerException e){
+					request.setAttribute("error", "The comment cannot be deleted at this time. It could've been deleted already.");
+					location = "WEB-INF/error.jsp";
+				}
 			}
+			else{
+				message = "You do not have permission to delete this comment";
+				location = "GetPosts";
+			}
+
+			request.setAttribute("message", message);
+			request.getRequestDispatcher(location).forward(request, response);
 		}
 		else{
-			message = "You do not have permission to delete this comment";
-			location = "GetPosts";
+			request.getRequestDispatcher("WEB-INF/error.jsp");
 		}
-		
-		request.setAttribute("message", message);
-		request.getRequestDispatcher(location).forward(request, response);
 	}
 }
