@@ -41,9 +41,23 @@
 		</div>
 		 <c:if test="${!empty comment.replies}">
 			<c:forEach items="${comment.replies}" var="reply">
-				<ul>
-					<t:commentTemplate comment="${reply }" post="${post }"></t:commentTemplate>
-				</ul>
+				
+					<c:set var="isAdminComment" value="false"/>
+					
+					<c:forEach var="group" items="${reply.poster.groups }">
+						<c:if test="${group.toString() eq 'admins' }">
+							<c:set var="isAdminComment" value="true"/>
+						</c:if>
+					</c:forEach>
+					
+					<c:choose>
+             			<c:when test="${not isAdminComment }">
+               				<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
+             			</c:when>
+             			<c:when test="${isAdminComment }">
+              				<t:adminCommentTemplate comment="${comment }" post="${post }"></t:adminCommentTemplate>
+             			</c:when>
+           			</c:choose>
 			</c:forEach>
 		</c:if>
 </div>
