@@ -6,28 +6,16 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="adminComment">
-	<div class="vote">
-		<form method="get" action="RateComment" class="vote">
-			<input type="hidden" name="id" value="${comment.id }" />
-			<button name="upvote" type="submit">
-				<i class="fa fa-thumbs-o-up"></i>
-			</button>
-			<span> <c:out value="${comment.rating }" escapeXml="true"></c:out></span>
-			<button name="downvote" type="submit">
-				<i class="fa fa-thumbs-o-down"></i>
-			</button>
-		</form>
-	</div>
-
-	<div>
-		<form method="post" action="DeleteComment">
-			<input type="hidden" name="comment" value="${comment.id }"></input>
-			<button type="submit">Delete this comment</button>
-		</form>
-	</div>
-
 	<li>
+<div class="adminComment">
+	<c:if test="${not empty sessionScope.isAdmin}">
+		<div>
+			<form method="post" action="DeleteComment">
+				<input type="hidden" name="comment" value="${comment.id }"></input>
+				<button type="submit">Delete this comment</button>
+			</form>
+		</div>
+	</c:if>
 		<div class="info">
 			<div class="commenterInfo">
 				<em>Posted by: </em>
@@ -38,9 +26,7 @@
 			<p class="commentContent">
 				<c:out value="${comment.content }" escapeXml="true"></c:out>
 			</p>
-			<c:if test="${comment.poster.groups.contains('admins')}">
-			AWESOME
-		</c:if>
+
 		</div>
 
 		<div class="reply">
@@ -52,12 +38,13 @@
 					<input type="submit" value="Add comment">
 				</form>
 			</c:if>
-		</div> <c:if test="${!empty comment.replies}">
+		</div>
+		 <c:if test="${!empty comment.replies}">
 			<c:forEach items="${comment.replies}" var="reply">
 				<ul>
 					<t:commentTemplate comment="${reply }" post="${post }"></t:commentTemplate>
 				</ul>
 			</c:forEach>
 		</c:if>
-	</li>
 </div>
+</li>

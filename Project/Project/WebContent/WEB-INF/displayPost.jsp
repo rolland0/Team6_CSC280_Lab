@@ -1,6 +1,6 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <t:genericPage>
 	<jsp:attribute name="title">${post.title }</jsp:attribute>
 
@@ -33,16 +33,26 @@
 		<c:if test="${comment.parentComment == null}">
 			<div>
 				<ul>
+					
+					<c:set var="isAdminComment" value="false"/>
+					
+					<c:forEach var="group" items="${comment.poster.groups }">
+						<c:if test="${group.toString() eq 'admins' }">
+							<c:set var="isAdminComment" value="true"/>
+						</c:if>
+					</c:forEach>
+					
 					<c:choose>
-             			<c:when test="${empty isAdminComment }">
+             			<c:when test="${not isAdminComment }">
                				<t:commentTemplate comment="${comment }" post="${post }"></t:commentTemplate>
              			</c:when>
-             			<c:when test="${not empty isAdminComment }">
+             			<c:when test="${isAdminComment }">
               				<t:adminCommentTemplate comment="${comment }" post="${post }"></t:adminCommentTemplate>
              			</c:when>
            			</c:choose>
 				</ul>
 			</div>
+			<c:set var="isAdminComment" value="false"/>
 		</c:if>
 	</c:forEach>
 	
