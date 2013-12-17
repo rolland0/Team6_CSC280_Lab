@@ -47,13 +47,10 @@ public class DeleteComment extends HttpServlet {
 			try{
 				Post post = comment.getPost();
 				post.getComments().remove(comment);
-				System.out.println("comment removed from post");
 				pm.update(post);
 				poster.getComments().remove(comment);
-				System.out.println("comment removed from poster");
 				um.update(poster);
 				cm.deleteComment(commentId);
-				System.out.println("comment deleted");
 				message = "Comment successfully deleted";
 				location = "GetPosts";
 			}catch(DatabaseException | EJBException | NullPointerException e){

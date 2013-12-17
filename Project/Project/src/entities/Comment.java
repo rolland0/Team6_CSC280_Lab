@@ -107,6 +107,10 @@ public class Comment implements Serializable {
 			this.post = post;
 		}
 		
+		public List<Vote> getVotes(){
+			return votes;
+		}
+		
 		public void addVote(Vote vote) {
 			Iterator<Vote> voteIter = votes.iterator();
 			while(voteIter.hasNext()) {
