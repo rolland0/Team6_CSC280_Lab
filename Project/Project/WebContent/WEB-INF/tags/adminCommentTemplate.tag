@@ -18,14 +18,14 @@
 	</c:if>
 		<div class="info">
 			<div class="commenterInfo">
-				<em>Posted by: </em>
-				<c:out value="${comment.poster }" escapeXml="true"></c:out>
-				<em> at </em>
-				<c:out value="${comment.timeStamp }" escapeXml="true"></c:out>
-			</div>
+				<h3>Administrator, <c:out value="${comment.poster }" escapeXml="true"></c:out>, said: </h3>		
 			<p class="commentContent">
 				<c:out value="${comment.content }" escapeXml="true"></c:out>
 			</p>
+				<div style="text-align:center;">
+					 <c:out value="${comment.timeStamp }" escapeXml="true"></c:out>
+				</div>
+			</div>
 
 		</div>
 
